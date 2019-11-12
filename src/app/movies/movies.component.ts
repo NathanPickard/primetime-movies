@@ -11,7 +11,6 @@ export class MoviesComponent implements OnInit {
 
   foundMoviesNowPlaying: any[];
   foundMoviesNowPlayingImages: any[];
-  // foundImages: any[];
 
   constructor(private movieSearchService: MovieSearchService) { }
 
@@ -31,13 +30,9 @@ export class MoviesComponent implements OnInit {
     this.foundMoviesNowPlaying = data.results;
 
     for (let i = 0; i < this.foundMoviesNowPlaying.length; i++) {
-      this.foundMoviesNowPlayingImages.push(this.foundMoviesNowPlaying[i].poster_path)
-      // this.foundMoviesNowPlayingImages.push(this.foundMoviesNowPlaying);
-      console.log('hello');
+      this.foundMoviesNowPlayingImages.push('https://image.tmdb.org/t/p/w342' + this.foundMoviesNowPlaying[i].poster_path);
     }
-    // this.foundImages = data.results;
     console.log(this.foundMoviesNowPlaying);
-    console.log(this.foundMoviesNowPlayingImages);
 
     // this.foundMoviesNowPlayingImages.push('https://image.tmdb.org/t/p/w500' + )
   }
