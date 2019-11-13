@@ -34,7 +34,7 @@ export class MoviesComponent implements OnInit {
     this.foundMoviesNowPlaying = data.results;
 
     for (let i = 0; i < this.foundMoviesNowPlaying.length; i++) {
-      this.foundMoviesNowPlayingImages.push('https://image.tmdb.org/t/p/w342' + this.foundMoviesNowPlaying[i].poster_path);
+      this.foundMoviesNowPlayingImages.push('https://image.tmdb.org/t/p/w185' + this.foundMoviesNowPlaying[i].poster_path);
     }
     console.log(this.foundMoviesNowPlaying);
   }
@@ -42,5 +42,4 @@ export class MoviesComponent implements OnInit {
   handleError(error) {
     console.log(error);
   }
-
 }
