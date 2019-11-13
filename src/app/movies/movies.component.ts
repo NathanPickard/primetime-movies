@@ -10,7 +10,10 @@ import { MovieSearchService } from '../shared/movie-search.service';
 export class MoviesComponent implements OnInit {
 
   foundMoviesNowPlaying: any[];
+  foundMoviesUpcoming: any[];
+
   foundMoviesNowPlayingImages: any[];
+  foundMoviesUpcomingImages: any[];
 
   constructor(private movieSearchService: MovieSearchService) { }
 
@@ -19,6 +22,7 @@ export class MoviesComponent implements OnInit {
   ngOnInit() {
 
     this.foundMoviesNowPlayingImages = [];
+    this.foundMoviesUpcomingImages = [];
 
     this.searchMoviesNowPlaying();
   }
@@ -30,13 +34,31 @@ export class MoviesComponent implements OnInit {
     );
   }
 
+  searchMoviesUpcoming() {
+    return this.movieSearchService.getMoviesUpcoming().subscribe(
+      data => this.handleMoviesUpcoming(data),
+      error => this.handleError(error)
+    )
+  }
+
   handleMoviesNowPlaying(data) {
     this.foundMoviesNowPlaying = data.results;
 
     for (let i = 0; i < this.foundMoviesNowPlaying.length; i++) {
       this.foundMoviesNowPlayingImages.push('https://image.tmdb.org/t/p/w185' + this.foundMoviesNowPlaying[i].poster_path);
     }
+
     console.log(this.foundMoviesNowPlaying);
+  }
+
+  handleMoviesUpcoming(data) {
+    this.foundMoviesUpcoming = data.results;
+
+    for (let i = 0; i < this.foundMoviesUpcoming.length; i++) {
+      this.foundMoviesUpcomingImages.push('https://image.tmdb.org/t/p/w185' + this.foundMoviesUpcoming[i].poster_path);
+    }
+
+    console.log(this.foundMoviesUpcoming);
   }
 
   handleError(error) {

@@ -19,7 +19,11 @@ export class MovieSearchService {
   }
 
   getMoviesNowPlaying() {
-    return this.httpClient.get<any>('https://api.themoviedb.org/3/movie/now_playing?api_key=128ab7bff8b38ed01943900bbb4369bd&language=en-US&page=1');
+    return this.httpClient.get<any>('https://api.themoviedb.org/3/movie/now_playing?api_key=' + this.TMDB_API_KEY + '&language=en-US&page=1&region=US');
+  }
+
+  getMoviesUpcoming() {
+    return this.httpClient.get<any>('https://api.themoviedb.org/3/movie/upcoming?api_key=' + this.TMDB_API_KEY + '&language=en-US&page=1&region=US');
   }
 
 }
