@@ -5,6 +5,9 @@ import {
   MatCardModule,
   MatDatepickerModule,
   MatFormFieldModule,
+  MatInputModule,
+  MatSelectModule,
+  MatSortModule,
   MatToolbarModule
 } from '@angular/material';
 
@@ -14,6 +17,9 @@ import {
     MatCardModule,
     MatDatepickerModule,
     MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatSortModule,
     MatToolbarModule
   ],
   exports: [
@@ -21,6 +27,9 @@ import {
     MatCardModule,
     MatDatepickerModule,
     MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatSortModule,
     MatToolbarModule
   ]
 })

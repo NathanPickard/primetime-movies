@@ -1,6 +1,20 @@
-<div fxLayoutAlign="center center">
-  Movies now playing in theaters
-</div>
+<mat-card>
+  <mat-form-field fxLayoutAlign="end center">
+
+    <mat-label>Select movie times</mat-label>
+
+    <mat-select [(value)]="selected">
+      <mat-option value="now playing">Now playing</mat-option>
+      <mat-option value="coming soon">Coming soon</mat-option>
+    </mat-select>
+
+  </mat-form-field>
+
+</mat-card>
+
+<mat-toolbar color="accent" fxLayoutAlign="center center">
+  Movies {{ selected }}
+</mat-toolbar>
 
 <div fxLayout="row wrap" fxLayoutAlign="center center" style="padding: 30px 30px;">
 

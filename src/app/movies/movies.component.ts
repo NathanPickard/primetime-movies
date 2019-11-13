@@ -14,8 +14,12 @@ export class MoviesComponent implements OnInit {
 
   constructor(private movieSearchService: MovieSearchService) { }
 
+  selected = 'Now playing';
+
   ngOnInit() {
+
     this.foundMoviesNowPlayingImages = [];
+
     this.searchMoviesNowPlaying();
   }
 
@@ -33,8 +37,6 @@ export class MoviesComponent implements OnInit {
       this.foundMoviesNowPlayingImages.push('https://image.tmdb.org/t/p/w342' + this.foundMoviesNowPlaying[i].poster_path);
     }
     console.log(this.foundMoviesNowPlaying);
-
-    // this.foundMoviesNowPlayingImages.push('https://image.tmdb.org/t/p/w500' + )
   }
 
   handleError(error) {

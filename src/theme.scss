@@ -1,0 +1,16 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$primetime-movies-app-primary: mat-palette($mat-teal, 700);
+$primetime-movies-app-accent: mat-palette($mat-blue-grey, 400, A100, A400);
+$primetime-movies-app-warn: mat-palette($mat-red);
+
+// Creates the theme object( a Sass map containing all of the palettes)
+$primetime-movies-app-theme: mat-dark-theme(
+  $primetime-movies-app-primary,
+  $primetime-movies-app-accent,
+  $primetime-movies-app-warn
+);
+
+@include angular-material-theme($primetime-movies-app-theme);
