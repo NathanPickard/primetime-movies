@@ -15,15 +15,25 @@ export class MovieSearchService {
 
   getDiscoverMovies() {
     // return this.httpClient.get<any>(this.TMDB_API_URL + '')
-    return this.httpClient.get<any>('https://api.themoviedb.org/3/movie/now_playing?api_key=128ab7bff8b38ed01943900bbb4369bd&language=en-US&page=1');
+    return this.httpClient.get<any>(
+      'https://api.themoviedb.org/3/movie/now_playing?api_key=128ab7bff8b38ed01943900bbb4369bd&language=en-US&page=1'
+    );
   }
 
   getMoviesNowPlaying() {
-    return this.httpClient.get<any>('https://api.themoviedb.org/3/movie/now_playing?api_key=' + this.TMDB_API_KEY + '&language=en-US&page=1&region=US');
+    return this.httpClient.get<any>(this.TMDB_API_URL + 'movie/now_playing?api_key=' + this.TMDB_API_KEY
+      + '&language=en-US&page=1&region=US');
   }
 
   getMoviesUpcoming() {
-    return this.httpClient.get<any>('https://api.themoviedb.org/3/movie/upcoming?api_key=' + this.TMDB_API_KEY + '&language=en-US&page=1&region=US');
+    return this.httpClient.get<any>(this.TMDB_API_URL + 'movie/upcoming?api_key=' + this.TMDB_API_KEY
+      + '&language=en-US&page=1&region=US');
+  }
+
+  getMoviesMostPopular() {
+    return this.httpClient.get<any>(this.TMDB_API_URL + 'discover/movie?sort_by=popularity.desc&api_key=' + this.TMDB_API_KEY
+      + '&language=en-US&page=1&region=US');
+
   }
 
 }

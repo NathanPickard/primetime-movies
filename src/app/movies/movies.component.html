@@ -14,6 +14,10 @@
           <!-- <mat-icon>date_range</mat-icon>Coming soon -->
           Coming soon
         </mat-option>
+        <mat-option value="most popular" (click)="searchMoviesMostPopular()">
+          <!-- <mat-icon>date_range</mat-icon>Coming soon -->
+          Most popular
+        </mat-option>
       </mat-select>
 
     </mat-form-field>
@@ -96,6 +100,48 @@
             </mat-panel-title>
           </mat-expansion-panel-header>
           {{ foundMovieUpcoming.overview }}
+        </mat-expansion-panel>
+
+      </mat-card-content>
+
+    </mat-card>
+
+  </div>
+
+</div>
+
+<div *ngIf="foundMoviesMostPopular" fxLayout="row wrap" fxLayoutAlign="center center" style="padding: 15px 15px;">
+
+  <div *ngFor="let foundMovieMostPopular of foundMoviesMostPopular; let i = index" style="padding: 8px 8px">
+
+    <mat-card style="width: 300px;" fxLayout="column" fxLayoutAlign="center center">
+      <mat-card-header>
+        <mat-card-title style="text-align: center;">
+          {{ foundMovieMostPopular.original_title }}
+        </mat-card-title>
+        <mat-card-subtitle fxLayoutAlign="center center">
+          Out: <mat-icon>event</mat-icon>{{ foundMovieMostPopular.release_date | date:'mediumDate' }}
+        </mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+
+        <a *ngIf="foundMoviesMostPopularImages[i] !== 'noImage'" href="" fxLayoutAlign="center center">
+          <img src="{{ foundMoviesMostPopularImages[i] }}">
+        </a>
+
+        <div *ngIf="foundMoviesMostPopularImages[i] == 'noImage'" fxLayout="column" fxLayoutAlign="center center">
+          <mat-icon>theaters</mat-icon>
+          (Image not available)
+        </div>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Details
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          {{ foundMovieMostPopular.overview }}
         </mat-expansion-panel>
 
       </mat-card-content>
