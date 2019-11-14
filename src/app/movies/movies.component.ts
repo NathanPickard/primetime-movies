@@ -57,11 +57,11 @@ export class MoviesComponent implements OnInit {
       if (this.foundMoviesNowPlaying[i].poster_path !== null) {
         this.foundMoviesNowPlayingImages.push('https://image.tmdb.org/t/p/w185' + this.foundMoviesNowPlaying[i].poster_path);
       }
-      else if (this.foundMoviesNowPlaying[i].backdrop_path !== null ){
+      else if (this.foundMoviesNowPlaying[i].backdrop_path !== null) {
         this.foundMoviesNowPlayingImages.push('https://image.tmdb.org/t/p/w300' + this.foundMoviesNowPlaying[i].backdrop_path);
       }
       else {
-        // this.imageNotAvailable = true;
+        this.foundMoviesNowPlayingImages.push('noImage');
       }
     }
     console.log(this.foundMoviesNowPlaying);
@@ -71,16 +71,18 @@ export class MoviesComponent implements OnInit {
     this.foundMoviesUpcoming = data.results;
 
     for (let i = 0; i < this.foundMoviesUpcoming.length; i++) {
-      if (this.foundMoviesUpcoming[i].poster_path !== null) {
+      if (this.foundMoviesUpcoming[i].poster_path != null) {
         this.foundMoviesUpcomingImages.push('https://image.tmdb.org/t/p/w185' + this.foundMoviesUpcoming[i].poster_path);
       }
-      else if (this.foundMoviesUpcoming[i].backdrop_path !== null) {
+      else if (this.foundMoviesUpcoming[i].backdrop_path != null) {
         this.foundMoviesUpcomingImages.push('https://image.tmdb.org/t/p/w300' + this.foundMoviesUpcoming[i].backdrop_path);
       }
       else {
-        // this.imageNotAvailable = true;
+        this.foundMoviesUpcomingImages.push('noImage');
       }
     }
+
+    // console.log(this.foundMoviesUpcomingImages);
 
     console.log(this.foundMoviesUpcoming);
   }

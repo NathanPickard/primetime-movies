@@ -80,11 +80,11 @@
 
       <mat-card-content>
 
-        <a href="" fxLayoutAlign="center center">
+        <a *ngIf="foundMoviesUpcomingImages[i] !== 'noImage'" href="" fxLayoutAlign="center center">
           <img src="{{ foundMoviesUpcomingImages[i] }}">
         </a>
 
-        <div *ngIf="foundMoviesUpcomingImages[i] == null" fxLayout="column" fxLayoutAlign="center center">
+        <div *ngIf="foundMoviesUpcomingImages[i] == 'noImage'" fxLayout="column" fxLayoutAlign="center center">
           <mat-icon>theaters</mat-icon>
           Image not available
         </div>
