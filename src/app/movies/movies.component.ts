@@ -20,7 +20,7 @@ export class MoviesComponent implements OnInit {
 
   constructor(private movieSearchService: MovieSearchService) { }
 
-  // selected = 'Now playing';
+  selected = 'now playing';
 
   ngOnInit() {
 

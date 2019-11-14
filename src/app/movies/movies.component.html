@@ -29,7 +29,7 @@
   <mat-spinner></mat-spinner>
 </div>
 
-<div *ngIf="foundMoviesNowPlaying" fxLayout="row wrap" fxLayoutAlign="center center" style="padding: 15px 15px;">
+<div *ngIf="foundMoviesNowPlaying" fxLayout="row wrap" fxLayoutAlign="center center" style="padding: 12px 12px;">
 
   <div *ngFor="let foundMovieNowPlaying of foundMoviesNowPlaying; let i = index" style="padding: 8px 8px">
 
@@ -74,7 +74,7 @@
           {{ foundMovieUpcoming.original_title }}
         </mat-card-title>
         <mat-card-subtitle>
-          Out soon
+          Out {{ foundMovieUpcoming.release_date }}
         </mat-card-subtitle>
       </mat-card-header>
 
