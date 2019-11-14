@@ -1,6 +1,10 @@
 # PrimetimeMovies
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7f2e3897-dcdf-4c29-8f76-3b8edc141a87/deploy-status)](https://app.netlify.com/sites/primetime-movies/deploys)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.5.
+
+
 
 ## Development server
 
