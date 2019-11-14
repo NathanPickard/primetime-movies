@@ -15,9 +15,12 @@ export class MoviesComponent implements OnInit {
   foundMoviesNowPlayingImages: any[];
   foundMoviesUpcomingImages: any[];
 
+  searching = false;
+  imageNotAvailable = false;
+
   constructor(private movieSearchService: MovieSearchService) { }
 
-  selected = 'Now playing';
+  // selected = 'Now playing';
 
   ngOnInit() {
 
@@ -28,16 +31,22 @@ export class MoviesComponent implements OnInit {
   }
 
   searchMoviesNowPlaying() {
+    this.searching = true;
+    this.foundMoviesUpcoming = [];
     return this.movieSearchService.getMoviesNowPlaying().subscribe(
       data => this.handleMoviesNowPlaying(data),
-      error => this.handleError(error)
+      error => this.handleError(error),
+      () => this.searching = false
     );
   }
 
   searchMoviesUpcoming() {
+    this.searching = true;
+    this.foundMoviesNowPlaying = [];
     return this.movieSearchService.getMoviesUpcoming().subscribe(
       data => this.handleMoviesUpcoming(data),
-      error => this.handleError(error)
+      error => this.handleError(error),
+      () => this.searching = false
     )
   }
 
@@ -45,9 +54,16 @@ export class MoviesComponent implements OnInit {
     this.foundMoviesNowPlaying = data.results;
 
     for (let i = 0; i < this.foundMoviesNowPlaying.length; i++) {
-      this.foundMoviesNowPlayingImages.push('https://image.tmdb.org/t/p/w185' + this.foundMoviesNowPlaying[i].poster_path);
+      if (this.foundMoviesNowPlaying[i].poster_path !== null) {
+        this.foundMoviesNowPlayingImages.push('https://image.tmdb.org/t/p/w185' + this.foundMoviesNowPlaying[i].poster_path);
+      }
+      else if (this.foundMoviesNowPlaying[i].backdrop_path !== null ){
+        this.foundMoviesNowPlayingImages.push('https://image.tmdb.org/t/p/w300' + this.foundMoviesNowPlaying[i].backdrop_path);
+      }
+      else {
+        // this.imageNotAvailable = true;
+      }
     }
-
     console.log(this.foundMoviesNowPlaying);
   }
 
@@ -55,7 +71,15 @@ export class MoviesComponent implements OnInit {
     this.foundMoviesUpcoming = data.results;
 
     for (let i = 0; i < this.foundMoviesUpcoming.length; i++) {
-      this.foundMoviesUpcomingImages.push('https://image.tmdb.org/t/p/w185' + this.foundMoviesUpcoming[i].poster_path);
+      if (this.foundMoviesUpcoming[i].poster_path !== null) {
+        this.foundMoviesUpcomingImages.push('https://image.tmdb.org/t/p/w185' + this.foundMoviesUpcoming[i].poster_path);
+      }
+      else if (this.foundMoviesUpcoming[i].backdrop_path !== null) {
+        this.foundMoviesUpcomingImages.push('https://image.tmdb.org/t/p/w300' + this.foundMoviesUpcoming[i].backdrop_path);
+      }
+      else {
+        // this.imageNotAvailable = true;
+      }
     }
 
     console.log(this.foundMoviesUpcoming);

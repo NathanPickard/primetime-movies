@@ -2,11 +2,18 @@
   <mat-card>
     <mat-form-field fxLayoutAlign="end center">
 
-      <mat-label>Select movie times</mat-label>
+      <!-- <mat-label>Select movie times</mat-label> -->
+      <mat-label>Search by release </mat-label>
 
       <mat-select [(value)]="selected">
-        <mat-option value="now playing">Now playing</mat-option>
-        <mat-option value="coming soon">Coming soon</mat-option>
+        <mat-option value="now playing" (click)="searchMoviesNowPlaying()">
+          <!-- <mat-icon>new_releases</mat-icon>Now playing -->
+          Now playing
+        </mat-option>
+        <mat-option value="coming soon" (click)="searchMoviesUpcoming()">
+          <!-- <mat-icon>date_range</mat-icon>Coming soon -->
+          Coming soon
+        </mat-option>
       </mat-select>
 
     </mat-form-field>
@@ -18,9 +25,13 @@
   Movies {{ selected }}
 </mat-toolbar>
 
-<div fxLayout="row wrap" fxLayoutAlign="center center" style="padding: 15px 15px;">
+<div *ngIf="searching" fxLayoutAlign="center center">
+  <mat-spinner></mat-spinner>
+</div>
 
-  <div *ngFor="let foundMovieNowPlaying of foundMoviesNowPlaying; let i = index" style="padding: 10px 10px">
+<div *ngIf="foundMoviesNowPlaying" fxLayout="row wrap" fxLayoutAlign="center center" style="padding: 15px 15px;">
+
+  <div *ngFor="let foundMovieNowPlaying of foundMoviesNowPlaying; let i = index" style="padding: 8px 8px">
 
     <mat-card style="width: 300px;" fxLayout="column" fxLayoutAlign="center center">
       <mat-card-header>
@@ -29,9 +40,65 @@
         </mat-card-title>
       </mat-card-header>
 
-      <a href="" fxLayoutAlign="center center">
-        <img src="{{ foundMoviesNowPlayingImages[i] }}">
-      </a>
+      <mat-card-content>
+
+        <a *ngIf="foundMoviesNowPlaying[i]" href="" fxLayoutAlign="center center">
+          <img src="{{ foundMoviesNowPlayingImages[i] }}">
+        </a>
+
+        <mat-icon *ngIf="foundMoviesNowPlayingImages[i] == null">theaters</mat-icon>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Details
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          {{ foundMovieNowPlaying.overview }}
+        </mat-expansion-panel>
+      </mat-card-content>
+
+    </mat-card>
+
+  </div>
+
+</div>
+
+<div *ngIf="foundMoviesUpcoming" fxLayout="row wrap" fxLayoutAlign="center center" style="padding: 15px 15px;">
+
+  <div *ngFor="let foundMovieUpcoming of foundMoviesUpcoming; let i = index" style="padding: 8px 8px">
+
+    <mat-card style="width: 300px;" fxLayout="column" fxLayoutAlign="center center">
+      <mat-card-header>
+        <mat-card-title style="text-align: center;">
+          {{ foundMovieUpcoming.original_title }}
+        </mat-card-title>
+        <mat-card-subtitle>
+          Out soon
+        </mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+
+        <a href="" fxLayoutAlign="center center">
+          <img src="{{ foundMoviesUpcomingImages[i] }}">
+        </a>
+
+        <div *ngIf="foundMoviesUpcomingImages[i] == null" fxLayout="column" fxLayoutAlign="center center">
+          <mat-icon>theaters</mat-icon>
+          Image not available
+        </div>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Details
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          {{ foundMovieUpcoming.overview }}
+        </mat-expansion-panel>
+
+      </mat-card-content>
 
     </mat-card>
 
