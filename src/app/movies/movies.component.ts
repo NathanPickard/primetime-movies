@@ -52,7 +52,7 @@ export class MoviesComponent implements OnInit {
       data => this.handleMoviesUpcoming(data),
       error => this.handleError(error),
       () => this.searching = false
-    )
+    );
   }
 
   searchMoviesMostPopular() {
@@ -63,7 +63,7 @@ export class MoviesComponent implements OnInit {
       data => this.handleMoviesMostPopular(data),
       error => this.handleError(error),
       () => this.searching = false
-    )
+    );
   }
 
   handleMoviesNowPlaying(data) {

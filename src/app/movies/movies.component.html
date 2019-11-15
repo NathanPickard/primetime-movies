@@ -1,9 +1,28 @@
+<mat-toolbar color="accent" fxLayoutAlign="center center">
+  Movies {{ selected }}
+</mat-toolbar>
+
+<div>
+
+  <mat-card>
+    <form>
+      <mat-form-field>
+        <input matInput placeholder="Have a movie in mind?">
+
+      </mat-form-field>
+    </form>
+  </mat-card>
+
+
+</div>
+
+
 <div fxLayoutAlign="end end">
   <mat-card>
     <mat-form-field fxLayoutAlign="end center">
 
       <!-- <mat-label>Select movie times</mat-label> -->
-      <mat-label>Search by release </mat-label>
+      <mat-label>Search movies by:</mat-label>
 
       <mat-select [(value)]="selected">
         <mat-option value="now playing" (click)="searchMoviesNowPlaying()">
@@ -24,10 +43,6 @@
 
   </mat-card>
 </div>
-
-<mat-toolbar color="accent" fxLayoutAlign="center center">
-  Movies {{ selected }}
-</mat-toolbar>
 
 <div *ngIf="searching" fxLayoutAlign="center center" style="padding-top: 150px;">
   <mat-spinner></mat-spinner>
@@ -78,7 +93,7 @@
           {{ foundMovieUpcoming.original_title }}
         </mat-card-title>
         <mat-card-subtitle fxLayoutAlign="center center">
-          Out: <mat-icon>event</mat-icon>{{ foundMovieUpcoming.release_date | date:'mediumDate' }}
+          Out: {{ foundMovieUpcoming.release_date | date:'mediumDate' }} <mat-icon>event</mat-icon>
         </mat-card-subtitle>
       </mat-card-header>
 
