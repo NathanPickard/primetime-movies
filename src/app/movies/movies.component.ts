@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 
 import { MovieSearchService } from '../shared/movie-search.service';
 
@@ -12,10 +13,13 @@ export class MoviesComponent implements OnInit {
   foundMoviesNowPlaying: any[];
   foundMoviesUpcoming: any[];
   foundMoviesMostPopular: any[];
+  foundMoviesSearch: any[];
 
   foundMoviesNowPlayingImages: any[];
   foundMoviesUpcomingImages: any[];
   foundMoviesMostPopularImages: any[];
+
+  searchMovieForm: FormGroup;
 
   searching = false;
   imageNotAvailable = false;
@@ -31,6 +35,10 @@ export class MoviesComponent implements OnInit {
     this.foundMoviesMostPopularImages = [];
 
     this.searchMoviesNowPlaying();
+
+    this.searchMovieForm = new FormGroup({
+      'searchQuery': new FormControl(null)
+    });
   }
 
   searchMoviesNowPlaying() {
@@ -61,6 +69,16 @@ export class MoviesComponent implements OnInit {
     this.foundMoviesNowPlaying = [];
     return this.movieSearchService.getMoviesMostPopular().subscribe(
       data => this.handleMoviesMostPopular(data),
+      error => this.handleError(error),
+      () => this.searching = false
+    );
+  }
+
+  searchMovies() {
+    this.searching = true;
+    const searchMovieQuery = this.searchMovieForm.value.searchQuery;
+    return this.movieSearchService.getMovieSearch(searchMovieQuery).subscribe(
+      data => this.handleMovieSearch(data),
       error => this.handleError(error),
       () => this.searching = false
     );
@@ -118,6 +136,10 @@ export class MoviesComponent implements OnInit {
     }
 
     console.log(this.foundMoviesMostPopular);
+  }
+
+  handleMovieSearch(data) {
+    this.foundMoviesSearch = data.results;
   }
 
   handleError(error) {

@@ -33,6 +33,10 @@ export class MovieSearchService {
   getMoviesMostPopular() {
     return this.httpClient.get<any>(this.TMDB_API_URL + 'discover/movie?sort_by=popularity.desc&api_key=' + this.TMDB_API_KEY
       + '&language=en-US&page=1&region=US');
+  }
+
+  getMovieSearch(query) {
+    return this.httpClient.get('')
 
   }
 
