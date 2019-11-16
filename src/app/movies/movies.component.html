@@ -1,47 +1,52 @@
-<mat-toolbar color="accent" fxLayoutAlign="center center">
+<!-- <mat-toolbar color="accent" fxLayoutAlign="center center">
   Movies {{ selected }}
-</mat-toolbar>
+</mat-toolbar> -->
 
-<div>
+<div fxLayout="row" fxLayoutAlign="end center">
 
-  <mat-card>
-    <form>
-      <mat-form-field>
-        <input matInput placeholder="Have a movie in mind?">
+  <div fxLayoutAlign="center center">
+    <mat-card>
+      <form>
+        <mat-form-field>
+          <input matInput placeholder="Have a movie in mind?">
+
+        </mat-form-field>
+      </form>
+    </mat-card>
+  </div>
+
+
+  <div fxLayoutAlign="center center">
+    <mat-card>
+      <mat-form-field fxLayoutAlign="end center">
+
+        <!-- <mat-label>Select movie times</mat-label> -->
+        <mat-label>Search movies by:</mat-label>
+
+        <mat-select [(value)]="selected">
+          <mat-option value="now playing" (click)="searchMoviesNowPlaying()">
+            <!-- <mat-icon>new_releases</mat-icon>Now playing -->
+            Now playing
+          </mat-option>
+          <mat-option value="coming soon" (click)="searchMoviesUpcoming()">
+            <!-- <mat-icon>date_range</mat-icon>Coming soon -->
+            Coming soon
+          </mat-option>
+          <mat-option value="most popular" (click)="searchMoviesMostPopular()">
+            <!-- <mat-icon>date_range</mat-icon>Coming soon -->
+            Most popular
+          </mat-option>
+        </mat-select>
 
       </mat-form-field>
-    </form>
-  </mat-card>
 
+    </mat-card>
+  </div>
 
 </div>
 
-
-<div fxLayoutAlign="end end">
-  <mat-card>
-    <mat-form-field fxLayoutAlign="end center">
-
-      <!-- <mat-label>Select movie times</mat-label> -->
-      <mat-label>Search movies by:</mat-label>
-
-      <mat-select [(value)]="selected">
-        <mat-option value="now playing" (click)="searchMoviesNowPlaying()">
-          <!-- <mat-icon>new_releases</mat-icon>Now playing -->
-          Now playing
-        </mat-option>
-        <mat-option value="coming soon" (click)="searchMoviesUpcoming()">
-          <!-- <mat-icon>date_range</mat-icon>Coming soon -->
-          Coming soon
-        </mat-option>
-        <mat-option value="most popular" (click)="searchMoviesMostPopular()">
-          <!-- <mat-icon>date_range</mat-icon>Coming soon -->
-          Most popular
-        </mat-option>
-      </mat-select>
-
-    </mat-form-field>
-
-  </mat-card>
+<div fxLayoutAlign="center center">
+  <h2>Movies {{ selected }}</h2>
 </div>
 
 <div *ngIf="searching" fxLayoutAlign="center center" style="padding-top: 150px;">
@@ -103,7 +108,8 @@
           <img src="{{ foundMoviesUpcomingImages[i] }}">
         </a>
 
-        <div *ngIf="foundMoviesUpcomingImages[i] == 'noImage'" fxLayout="column" fxLayoutAlign="center center">
+        <div *ngIf="foundMoviesUpcomingImages[i] == 'noImage'" fxLayout="column" fxLayoutAlign="center center"
+          style="padding: 25px 0px;">
           <mat-icon>theaters</mat-icon>
           (Image not available)
         </div>
@@ -145,7 +151,8 @@
           <img src="{{ foundMoviesMostPopularImages[i] }}">
         </a>
 
-        <div *ngIf="foundMoviesMostPopularImages[i] == 'noImage'" fxLayout="column" fxLayoutAlign="center center">
+        <div *ngIf="foundMoviesMostPopularImages[i] == 'noImage'" fxLayout="column" fxLayoutAlign="center center"
+          style="padding: 25px 0px;">
           <mat-icon>theaters</mat-icon>
           (Image not available)
         </div>
