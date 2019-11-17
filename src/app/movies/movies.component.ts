@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { MovieSearchService } from '../shared/movie-search.service';
 
@@ -18,6 +18,7 @@ export class MoviesComponent implements OnInit {
   foundMoviesNowPlayingImages: any[];
   foundMoviesUpcomingImages: any[];
   foundMoviesMostPopularImages: any[];
+  foundMoviesSearchImages: any[];
 
   searchMovieForm: FormGroup;
 
@@ -33,11 +34,12 @@ export class MoviesComponent implements OnInit {
     this.foundMoviesNowPlayingImages = [];
     this.foundMoviesUpcomingImages = [];
     this.foundMoviesMostPopularImages = [];
+    this.foundMoviesSearchImages = [];
 
     this.searchMoviesNowPlaying();
 
     this.searchMovieForm = new FormGroup({
-      'searchQuery': new FormControl(null)
+      'searchQuery': new FormControl('')
     });
   }
 
@@ -76,6 +78,10 @@ export class MoviesComponent implements OnInit {
 
   searchMovies() {
     this.searching = true;
+
+    this.foundMoviesUpcoming = [];
+    this.foundMoviesNowPlaying = [];
+    this.foundMoviesNowPlaying = [];
     const searchMovieQuery = this.searchMovieForm.value.searchQuery;
     return this.movieSearchService.getMovieSearch(searchMovieQuery).subscribe(
       data => this.handleMovieSearch(data),
@@ -140,6 +146,20 @@ export class MoviesComponent implements OnInit {
 
   handleMovieSearch(data) {
     this.foundMoviesSearch = data.results;
+
+    for (let i = 0; i < this.foundMoviesSearch.length; i++) {
+      if (this.foundMoviesSearch[i].poster_path != null) {
+        this.foundMoviesSearchImages.push('https://image.tmdb.org/t/p/w185' + this.foundMoviesSearch[i].poster_path);
+      }
+      else if (this.foundMoviesSearch[i].backdrop_path != null) {
+        this.foundMoviesMostPopularImages.push('https://image.tmdb.org/t/p/w300' + this.foundMoviesSearch[i].backdrop_path);
+      }
+      else {
+        this.foundMoviesSearchImages.push('noImage');
+      }
+    }
+
+    console.log(this.foundMoviesSearch);
   }
 
   handleError(error) {
