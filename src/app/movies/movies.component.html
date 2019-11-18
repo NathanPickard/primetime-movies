@@ -12,6 +12,7 @@
         <mat-form-field appearance="outline">
           <mat-label>Search movies</mat-label>
           <input matInput placeholder="Have a movie in mind?" formControlName="searchQuery">
+          <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
 
       </form>
@@ -81,7 +82,9 @@
               Details
             </mat-panel-title>
           </mat-expansion-panel-header>
+          <h3>Overview:</h3>
           {{ foundMovieNowPlaying.overview }}
+          <h3>Rating: {{ foundMovieNowPlaying.vote_average }}</h3>
         </mat-expansion-panel>
       </mat-card-content>
 
@@ -177,7 +180,10 @@
 
 </div>
 
+<h2>Search results for "{{ searchMovieForm.get('searchQuery').value }}"</h2>
+
 <div *ngIf="foundMoviesSearch" fxLayout="row wrap" fxLayoutAlign="center center" style="padding: 15px 15px;">
+
 
   <div *ngFor="let foundMovieSearch of foundMoviesSearch; let i = index" style="padding: 8px 8px">
 

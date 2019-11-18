@@ -47,6 +47,7 @@ export class MoviesComponent implements OnInit {
     this.searching = true;
     this.foundMoviesUpcoming = [];
     this.foundMoviesMostPopular = [];
+    this.foundMoviesSearch = [];
     return this.movieSearchService.getMoviesNowPlaying().subscribe(
       data => this.handleMoviesNowPlaying(data),
       error => this.handleError(error),
@@ -58,6 +59,7 @@ export class MoviesComponent implements OnInit {
     this.searching = true;
     this.foundMoviesNowPlaying = [];
     this.foundMoviesMostPopular = [];
+    this.foundMoviesSearch = [];
     return this.movieSearchService.getMoviesUpcoming().subscribe(
       data => this.handleMoviesUpcoming(data),
       error => this.handleError(error),
@@ -78,10 +80,9 @@ export class MoviesComponent implements OnInit {
 
   searchMovies() {
     this.searching = true;
-
     this.foundMoviesUpcoming = [];
     this.foundMoviesNowPlaying = [];
-    this.foundMoviesNowPlaying = [];
+    this.foundMoviesMostPopular = [];
     const searchMovieQuery = this.searchMovieForm.value.searchQuery;
     return this.movieSearchService.getMovieSearch(searchMovieQuery).subscribe(
       data => this.handleMovieSearch(data),
