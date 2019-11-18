@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material';
 
+import { MoviePosterComponent } from './movie-poster.component';
 import { MovieSearchService } from '../shared/movie-search.service';
 
 @Component({
@@ -25,7 +27,8 @@ export class MoviesComponent implements OnInit {
   searching = false;
   imageNotAvailable = false;
 
-  constructor(private movieSearchService: MovieSearchService) { }
+  constructor(private movieSearchService: MovieSearchService,
+    private dialog: MatDialog) { }
 
   selected = 'now playing';
 
@@ -41,6 +44,15 @@ export class MoviesComponent implements OnInit {
     this.searchMovieForm = new FormGroup({
       'searchQuery': new FormControl('')
     });
+  }
+
+  openPoster() {
+    const dialogRef = this.dialog.open(MoviePosterComponent, {
+      data: {
+        largePoster: this.foundMoviesNowPlayingImages
+      }
+    })
+
   }
 
   searchMoviesNowPlaying() {

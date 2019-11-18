@@ -10,13 +10,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './shared/material.module';
 
 import { AppComponent } from './app.component';
-import { environment } from '../environments/environment';
 import { MoviesComponent } from './movies/movies.component';
+import { MoviePosterComponent } from './movies/movie-poster.component';
+
+import { environment } from '../environments/environment';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    MoviesComponent
+    MoviesComponent,
+    MoviePosterComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +34,7 @@ import { MoviesComponent } from './movies/movies.component';
     BrowserAnimationsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [MoviePosterComponent]
 })
 export class AppModule { }
