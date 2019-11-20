@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 
-import { MoviePosterComponent } from './movie-poster.component';
+// import { MoviePosterComponent } from './movie-poster.component';
 import { MovieSearchService } from '../shared/movie-search.service';
 
 @Component({
@@ -178,4 +178,13 @@ export class MoviesComponent implements OnInit {
   handleError(error) {
     console.log(error);
   }
+}
+
+@Component({
+  selector: 'app-movie-poster',
+  // template: `<img src="{{ passedData.foundMoviesNowPlayingImages }}">`
+  templateUrl: './movie-poster.component.html'
+})
+export class MoviePosterComponent {
+  constructor(@Inject(MAT_DIALOG_DATA) public passedData: any) { }
 }

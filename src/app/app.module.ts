@@ -11,7 +11,7 @@ import { MaterialModule } from './shared/material.module';
 
 import { AppComponent } from './app.component';
 import { MoviesComponent } from './movies/movies.component';
-import { MoviePosterComponent } from './movies/movie-poster.component';
+import { MoviePosterComponent } from './movies/movies.component';
 
 import { environment } from '../environments/environment';
 
