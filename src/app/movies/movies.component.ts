@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 // import { MoviePosterComponent } from './movie-poster.component';
 import { MovieSearchService } from '../shared/movie-search.service';
@@ -186,5 +186,8 @@ export class MoviesComponent implements OnInit {
   templateUrl: './movie-poster.component.html'
 })
 export class MoviePosterComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public passedData: any) { }
+
+  constructor(
+    public dialogRef: MatDialogRef<MoviePosterComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
 }
