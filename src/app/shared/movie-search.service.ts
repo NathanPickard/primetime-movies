@@ -14,9 +14,8 @@ export class MovieSearchService {
   constructor(private httpClient: HttpClient) { }
 
   getDiscoverMovies() {
-    // return this.httpClient.get<any>(this.TMDB_API_URL + '')
     return this.httpClient.get<any>(
-      'https://api.themoviedb.org/3/movie/now_playing?api_key=128ab7bff8b38ed01943900bbb4369bd&language=en-US&page=1'
+      this.TMDB_API_URL + 'movie/now_playing?api_key=128ab7bff8b38ed01943900bbb4369bd&language=en-US&page=1'
     );
   }
 
