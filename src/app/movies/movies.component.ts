@@ -26,6 +26,7 @@ export class MoviesComponent implements OnInit {
 
   searching = false;
   imageNotAvailable = false;
+  foundSearchResults = false;
 
   constructor(private movieSearchService: MovieSearchService,
     private dialog: MatDialog) { }
@@ -46,7 +47,7 @@ export class MoviesComponent implements OnInit {
     });
   }
 
-  openPoster() {
+  openPosterDialog() {
     const dialogRef = this.dialog.open(MoviePosterComponent, {
       data: {
         largePoster: this.foundMoviesNowPlayingImages
@@ -159,6 +160,7 @@ export class MoviesComponent implements OnInit {
 
   handleMovieSearch(data) {
     this.foundMoviesSearch = data.results;
+    this.foundSearchResults = true;
 
     for (let i = 0; i < this.foundMoviesSearch.length; i++) {
       if (this.foundMoviesSearch[i].poster_path != null) {

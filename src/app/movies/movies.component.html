@@ -3,7 +3,7 @@
 </mat-toolbar> -->
 
 <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="end center">
-    <!-- <div fxLayout="row" fxLayoutGap.gt-xs="15px" fxLayoutAlign.gt-sm="end center" fxLayoutAlign="center center" style="padding-top: 8px;"> -->
+  <!-- <div fxLayout="row" fxLayoutGap.gt-xs="15px" fxLayoutAlign.gt-sm="end center" fxLayoutAlign="center center" style="padding-top: 8px;"> -->
 
   <div fxLayoutAlign="center center">
     <mat-card>
@@ -71,7 +71,7 @@
 
       <mat-card-content>
 
-        <a *ngIf="foundMoviesNowPlaying[i]" (click)="openPoster()" fxLayoutAlign="center center">
+        <a *ngIf="foundMoviesNowPlaying[i]" (click)="openPosterDialog()" fxLayoutAlign="center center">
           <img src="{{ foundMoviesNowPlayingImages[i] }}">
         </a>
 
@@ -183,7 +183,10 @@
 
 </div>
 
-<h2 fxLayoutAlign="center center">Search results for "{{ searchMovieForm.get('searchQuery').value }}"</h2>
+
+<h2 *ngIf="foundSearchResults" fxLayoutAlign="center center">Search results for
+  "{{ searchMovieForm.get('searchQuery').value }}"</h2>
+
 
 <div *ngIf="foundMoviesSearch" fxLayout="row wrap" fxLayoutAlign="center center" style="padding: 15px 15px;">
 
