@@ -1,3 +1,15 @@
+<h1 mat-dialog-title>Movie Poster</h1>
+
+<div mat-dialog-content>
+  {{ data.movieNowPlayingInfo.original_title }}
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button color="primary" (click)="onDialogClose()">
+    Close
+  </button>
+</div>
+
 <!-- <div *ngFor=""> -->
 <!-- <img src="{{ data.largePoster }}"> -->
 <!-- </div> -->

@@ -49,11 +49,12 @@ export class MoviesComponent implements OnInit {
 
   openPosterDialog() {
     const dialogRef = this.dialog.open(MoviePosterComponent, {
+      width: '250px',
       data: {
-        largePoster: this.foundMoviesNowPlayingImages
+        largePoster: this.foundMoviesNowPlayingImages,
+        movieNowPlayingInfo: this.foundMoviesNowPlaying
       }
-    })
-
+    });
   }
 
   searchMoviesNowPlaying() {
@@ -192,4 +193,8 @@ export class MoviePosterComponent {
   constructor(
     public dialogRef: MatDialogRef<MoviePosterComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
+
+    onDialogClose(): void {
+      this.dialogRef.close();
+    }
 }
