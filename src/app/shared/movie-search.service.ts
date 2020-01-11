@@ -37,7 +37,6 @@ export class MovieSearchService {
   getMovieSearch(query) {
     return this.httpClient.get(this.TMDB_API_URL + 'search/movie?api_key=' + this.TMDB_API_KEY
       + '&language=en-US&page=1&region=US&query=' + query + '&page=1&include_adult=false');
-
   }
 
 }

@@ -23,8 +23,9 @@
 
   <div fxLayoutAlign="center center">
     <mat-card>
-      <mat-form-field>
 
+      <mat-form-field>
+        
         <!-- <mat-label>Select movie times</mat-label> -->
         <mat-label>Search movies by:</mat-label>
 
@@ -44,6 +45,21 @@
         </mat-select>
 
       </mat-form-field>
+
+      <!-- <mat-form-field> -->
+
+        <!-- <mat-label>Select movie times</mat-label> -->
+        <!-- <mat-label>Search movies by:</mat-label> -->
+
+        <!-- <mat-select [(ngModel)]="selectedValue"> -->
+        <!-- <mat-select [formControl]="movieReleaseTypControl">
+          <mat-option *ngFor="let movie of movieReleaseType" [value]="movie.value"> -->
+            <!-- <mat-icon>new_releases</mat-icon>Now playing -->
+            <!-- {{ movie.viewValue }}
+          </mat-option>
+        </mat-select>
+
+      </mat-form-field> -->
 
     </mat-card>
   </div>
@@ -186,7 +202,6 @@
 
 <h2 *ngIf="foundSearchResults" fxLayoutAlign="center center">Search results for
   "{{ searchMovieForm.get('searchQuery').value }}"</h2>
-
 
 <div *ngIf="foundMoviesSearch" fxLayout="row wrap" fxLayoutAlign="center center" style="padding: 15px 15px;">
 

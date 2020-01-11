@@ -23,6 +23,7 @@ export class MoviesComponent implements OnInit {
   foundMoviesSearchImages: any[];
 
   searchMovieForm: FormGroup;
+  movieReleaseTypeControl = new FormControl('');
 
   searching = false;
   imageNotAvailable = false;
@@ -31,7 +32,13 @@ export class MoviesComponent implements OnInit {
   constructor(private movieSearchService: MovieSearchService,
     private dialog: MatDialog) { }
 
-  selected = 'now playing';
+  // selected = 'now playing';
+
+  movieReleaseType = [
+    { value: 'Now Playing', viewValue: 'Now Playing' },
+    { value: 'Coming Soon', viewValue: 'Coming Soon' },
+    { value: 'Most Popular', viewValue: 'Most Popular' }
+  ]
 
   ngOnInit() {
 
@@ -64,6 +71,18 @@ export class MoviesComponent implements OnInit {
     this.foundMoviesSearch = [];
     return this.movieSearchService.getMoviesNowPlaying().subscribe(
       data => this.handleMoviesNowPlaying(data),
+      error => this.handleError(error),
+      () => this.searching = false
+    );
+  }
+
+  searchMoviesUpcomingSelected() {
+    this.searching = true;
+    this.foundMoviesNowPlaying = [];
+    this.foundMoviesMostPopular = [];
+    this.foundMoviesSearch = [];
+    return this.movieSearchService.getMoviesUpcoming().subscribe(
+      data => this.handleMoviesUpcoming(data),
       error => this.handleError(error),
       () => this.searching = false
     );
@@ -194,7 +213,7 @@ export class MoviePosterComponent {
     public dialogRef: MatDialogRef<MoviePosterComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
-    onDialogClose(): void {
-      this.dialogRef.close();
-    }
+  onDialogClose(): void {
+    this.dialogRef.close();
+  }
 }
