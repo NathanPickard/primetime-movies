@@ -64,6 +64,11 @@ export class MoviesComponent implements OnInit {
     });
   }
 
+  onMovieTypeChange(movieType) {
+    let selectedMovieType = movieType.value;
+    console.log(selectedMovieType);
+  }
+
   searchMoviesNowPlaying() {
     this.searching = true;
     this.foundMoviesUpcoming = [];
