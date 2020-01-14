@@ -14,13 +14,15 @@ import { MoviesComponent } from './movies/movies.component';
 import { MoviePosterComponent } from './movies/movies.component';
 
 import { environment } from '../environments/environment';
+import { MovieDetailsComponent } from './movie-details/movie-details.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MoviesComponent,
-    MoviePosterComponent
+    MoviePosterComponent,
+    MovieDetailsComponent
   ],
   imports: [
     BrowserModule,
