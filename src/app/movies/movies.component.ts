@@ -129,6 +129,23 @@ export class MoviesComponent implements OnInit {
     );
   }
 
+  handleAllMovieResults(data) {
+    this.foundMoviesNowPlaying = data.results;
+
+    for (let i = 0; i < this.foundMoviesNowPlaying.length; i++) {
+      if (this.foundMoviesNowPlaying[i].poster_path !== null) {
+        this.foundMoviesNowPlayingImages.push('https://image.tmdb.org/t/p/w185' + this.foundMoviesNowPlaying[i].poster_path);
+      }
+      else if (this.foundMoviesNowPlaying[i].backdrop_path !== null) {
+        this.foundMoviesNowPlayingImages.push('https://image.tmdb.org/t/p/w300' + this.foundMoviesNowPlaying[i].backdrop_path);
+      }
+      else {
+        this.foundMoviesNowPlayingImages.push('noImage');
+      }
+    }
+    console.log(this.foundMoviesNowPlaying);
+  }
+
   handleMoviesNowPlaying(data) {
     this.foundMoviesNowPlaying = data.results;
 
