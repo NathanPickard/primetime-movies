@@ -12,10 +12,9 @@ import { MaterialModule } from './shared/material.module';
 import { AppComponent } from './app.component';
 import { MoviesComponent } from './movies/movies.component';
 import { MoviePosterComponent } from './movies/movies.component';
+import { MovieDetailsComponent } from './movies/movie-details/movie-details.component';
 
 import { environment } from '../environments/environment';
-import { MovieDetailsComponent } from './movie-details/movie-details.component';
-
 
 @NgModule({
   declarations: [

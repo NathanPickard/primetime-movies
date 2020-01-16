@@ -12,10 +12,14 @@ import { MovieSearchService } from '../shared/movie-search.service';
 })
 export class MoviesComponent implements OnInit {
 
+  foundMovieResults: any[];
+
   foundMoviesNowPlaying: any[];
   foundMoviesUpcoming: any[];
   foundMoviesMostPopular: any[];
   foundMoviesSearch: any[];
+
+  foundMovieResultsImages: any[];
 
   foundMoviesNowPlayingImages: any[];
   foundMoviesUpcomingImages: any[];
@@ -32,7 +36,7 @@ export class MoviesComponent implements OnInit {
   constructor(private movieSearchService: MovieSearchService,
     private dialog: MatDialog) { }
 
-  // selected = 'now playing';
+  selected = 'Now Playing';
 
   movieReleaseType = [
     { value: 'Now Playing', viewValue: 'Now Playing' },
@@ -46,6 +50,8 @@ export class MoviesComponent implements OnInit {
     this.foundMoviesUpcomingImages = [];
     this.foundMoviesMostPopularImages = [];
     this.foundMoviesSearchImages = [];
+
+    this.foundMovieResultsImages = [];
 
     this.searchMoviesNowPlaying();
 
@@ -71,23 +77,14 @@ export class MoviesComponent implements OnInit {
 
   searchMoviesNowPlaying() {
     this.searching = true;
-    this.foundMoviesUpcoming = [];
-    this.foundMoviesMostPopular = [];
-    this.foundMoviesSearch = [];
+    this.foundMovieResults = []
+    this.foundMovieResultsImages = [];
+    // this.foundMoviesUpcoming = [];
+    // this.foundMoviesMostPopular = [];
+    // this.foundMoviesSearch = [];
     return this.movieSearchService.getMoviesNowPlaying().subscribe(
-      data => this.handleMoviesNowPlaying(data),
-      error => this.handleError(error),
-      () => this.searching = false
-    );
-  }
-
-  searchMoviesUpcomingSelected() {
-    this.searching = true;
-    this.foundMoviesNowPlaying = [];
-    this.foundMoviesMostPopular = [];
-    this.foundMoviesSearch = [];
-    return this.movieSearchService.getMoviesUpcoming().subscribe(
-      data => this.handleMoviesUpcoming(data),
+      // data => this.handleMoviesNowPlaying(data),
+      data => this.handleAllMovieResults(data),
       error => this.handleError(error),
       () => this.searching = false
     );
@@ -95,11 +92,14 @@ export class MoviesComponent implements OnInit {
 
   searchMoviesUpcoming() {
     this.searching = true;
-    this.foundMoviesNowPlaying = [];
-    this.foundMoviesMostPopular = [];
-    this.foundMoviesSearch = [];
+    this.foundMovieResults = []
+    this.foundMovieResultsImages = [];
+    // this.foundMoviesNowPlaying = [];
+    // this.foundMoviesMostPopular = [];
+    // this.foundMoviesSearch = [];
     return this.movieSearchService.getMoviesUpcoming().subscribe(
-      data => this.handleMoviesUpcoming(data),
+      // data => this.handleMoviesUpcoming(data),
+      data => this.handleAllMovieResults(data),
       error => this.handleError(error),
       () => this.searching = false
     );
@@ -107,10 +107,13 @@ export class MoviesComponent implements OnInit {
 
   searchMoviesMostPopular() {
     this.searching = true;
-    this.foundMoviesUpcoming = [];
-    this.foundMoviesNowPlaying = [];
+    this.foundMovieResults = []
+    this.foundMovieResultsImages = [];
+    // this.foundMoviesUpcoming = [];
+    // this.foundMoviesNowPlaying = [];
     return this.movieSearchService.getMoviesMostPopular().subscribe(
-      data => this.handleMoviesMostPopular(data),
+      // data => this.handleMoviesMostPopular(data),
+      data => this.handleAllMovieResults(data),
       error => this.handleError(error),
       () => this.searching = false
     );
@@ -118,32 +121,37 @@ export class MoviesComponent implements OnInit {
 
   searchMovies() {
     this.searching = true;
-    this.foundMoviesUpcoming = [];
-    this.foundMoviesNowPlaying = [];
-    this.foundMoviesMostPopular = [];
+    this.foundMovieResults = []
+    this.foundMovieResultsImages = [];
+    // this.foundMoviesUpcoming = [];
+    // this.foundMoviesNowPlaying = [];
+    // this.foundMoviesMostPopular = [];
     const searchMovieQuery = this.searchMovieForm.value.searchQuery;
     return this.movieSearchService.getMovieSearch(searchMovieQuery).subscribe(
-      data => this.handleMovieSearch(data),
+      // data => this.handleMovieSearch(data),
+      data => this.handleAllMovieResults(data),
       error => this.handleError(error),
       () => this.searching = false
     );
   }
 
-  handleAllMovieResults(data) {
-    this.foundMoviesNowPlaying = data.results;
 
-    for (let i = 0; i < this.foundMoviesNowPlaying.length; i++) {
-      if (this.foundMoviesNowPlaying[i].poster_path !== null) {
-        this.foundMoviesNowPlayingImages.push('https://image.tmdb.org/t/p/w185' + this.foundMoviesNowPlaying[i].poster_path);
+
+  handleAllMovieResults(data) {
+    this.foundMovieResults = data.results;
+
+    for (let i = 0; i < this.foundMovieResults.length; i++) {
+      if (this.foundMovieResults[i].poster_path !== null) {
+        this.foundMovieResultsImages.push('https://image.tmdb.org/t/p/w185' + this.foundMovieResults[i].poster_path);
       }
-      else if (this.foundMoviesNowPlaying[i].backdrop_path !== null) {
-        this.foundMoviesNowPlayingImages.push('https://image.tmdb.org/t/p/w300' + this.foundMoviesNowPlaying[i].backdrop_path);
+      else if (this.foundMovieResults[i].backdrop_path !== null) {
+        this.foundMovieResultsImages.push('https://image.tmdb.org/t/p/w300' + this.foundMovieResults[i].backdrop_path);
       }
       else {
-        this.foundMoviesNowPlayingImages.push('noImage');
+        this.foundMovieResultsImages.push('noImage');
       }
     }
-    console.log(this.foundMoviesNowPlaying);
+    console.log(this.foundMovieResults);
   }
 
   handleMoviesNowPlaying(data) {

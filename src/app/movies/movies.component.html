@@ -30,15 +30,15 @@
         <mat-label>Search movies by:</mat-label>
 
         <mat-select [(value)]="selected">
-          <mat-option value="now playing" (click)="searchMoviesNowPlaying()">
+          <mat-option value="Now Playing" (click)="searchMoviesNowPlaying()">
             <!-- <mat-icon>new_releases</mat-icon>Now playing -->
             Now playing
           </mat-option>
-          <mat-option value="coming soon" (click)="searchMoviesUpcoming()">
+          <mat-option value="Coming Soon" (click)="searchMoviesUpcoming()">
             <!-- <mat-icon>date_range</mat-icon>Coming soon -->
             Coming soon
           </mat-option>
-          <mat-option value="most popular" (click)="searchMoviesMostPopular()">
+          <mat-option value="Most Popular" (click)="searchMoviesMostPopular()">
             <!-- <mat-icon>date_range</mat-icon>Coming soon -->
             Most popular
           </mat-option>
@@ -67,14 +67,56 @@
 </div>
 
 <div fxLayoutAlign="center center">
-  <h2>Movies {{ selected }}</h2>
+  <h2> {{ selected }}</h2>
 </div>
 
 <div *ngIf="searching" fxLayoutAlign="center center" style="padding-top: 150px;">
   <mat-spinner color="accent"></mat-spinner>
 </div>
 
-<div *ngIf="foundMoviesNowPlaying" fxLayout="row wrap" fxLayoutAlign="center center" style="padding: 12px 12px;">
+<div *ngIf="foundMovieResults" fxLayout="row wrap" fxLayoutAlign="center center" style="padding: 12px 12px;">
+
+  <div *ngFor="let foundMovieResult of foundMovieResults; let i = index" style="padding: 8px 8px">
+    <mat-card style="width: 300px;" fxLayout="column" fxLayoutAlign="center center">
+      <mat-card-header>
+        <mat-card-title style="text-align: center;">
+          {{ foundMovieResult.original_title }}
+        </mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+
+        <a *ngIf="foundMovieResults[i]" (click)="openPosterDialog()" fxLayoutAlign="center center">
+          <img src="{{ foundMovieResultsImages[i] }}">
+        </a>
+
+        <!-- <mat-icon *ngIf="foundMovieResultsImages[i] == null">theaters</mat-icon> -->
+
+        <div *ngIf="foundMoviesUpcomingImages[i] == 'noImage'" fxLayout="column" fxLayoutAlign="center center"
+          style="padding: 25px 0px;">
+          <mat-icon>theaters</mat-icon>
+          (Image not available)
+        </div>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Details
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <h3>Overview:</h3>
+          {{ foundMovieResult.overview }}
+          <h3>Rating: {{ foundMovieResult.vote_average }}</h3>
+        </mat-expansion-panel>
+      </mat-card-content>
+
+    </mat-card>
+
+  </div>
+
+</div>
+
+<!-- <div *ngIf="foundMoviesNowPlaying" fxLayout="row wrap" fxLayoutAlign="center center" style="padding: 12px 12px;">
 
   <div *ngFor="let foundMovieNowPlaying of foundMoviesNowPlaying; let i = index" style="padding: 8px 8px">
 
@@ -109,9 +151,9 @@
 
   </div>
 
-</div>
+</div> -->
 
-<div *ngIf="foundMoviesUpcoming" fxLayout="row wrap" fxLayoutAlign="center center" style="padding: 15px 15px;">
+<!-- <div *ngIf="foundMoviesUpcoming" fxLayout="row wrap" fxLayoutAlign="center center" style="padding: 15px 15px;">
 
   <div *ngFor="let foundMovieUpcoming of foundMoviesUpcoming; let i = index" style="padding: 8px 8px">
 
@@ -153,9 +195,9 @@
 
   </div>
 
-</div>
+</div> -->
 
-<div *ngIf="foundMoviesMostPopular" fxLayout="row wrap" fxLayoutAlign="center center" style="padding: 15px 15px;">
+<!-- <div *ngIf="foundMoviesMostPopular" fxLayout="row wrap" fxLayoutAlign="center center" style="padding: 15px 15px;">
 
   <div *ngFor="let foundMovieMostPopular of foundMoviesMostPopular; let i = index" style="padding: 8px 8px">
 
@@ -197,7 +239,7 @@
 
   </div>
 
-</div>
+</div> -->
 
 
 <h2 *ngIf="foundSearchResults" fxLayoutAlign="center center">Search results for
