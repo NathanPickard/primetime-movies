@@ -14,9 +14,10 @@
         <mat-form-field appearance="outline">
           <mat-label>Search movies</mat-label>
           <input matInput placeholder="Have a movie in mind?" formControlName="searchQuery">
-          <mat-icon matSuffix>search</mat-icon>
+          <button matSuffix mat-mini-fab color="primary">
+            <mat-icon>search</mat-icon>
+          </button>
         </mat-form-field>
-
       </form>
 
       <!-- </mat-card> -->
@@ -79,7 +80,7 @@
 
 <div *ngIf="foundMovieResults" fxLayout="row wrap" fxLayoutAlign="center center" style="padding: 12px 12px;">
 
-  <div *ngFor="let foundMovieResult of foundMovieResults; let i = index" [@fadeInOut] style="padding: 8px 8px">
+  <div *ngFor="let foundMovieResult of foundMovieResults; let i = index" [@listAnimation] style="padding: 8px 8px">
     <mat-card style="width: 300px;" fxLayout="column" fxLayoutAlign="center center">
       <mat-card-header>
         <mat-card-title style="text-align: center;">

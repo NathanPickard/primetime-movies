@@ -18,6 +18,31 @@ import { MovieSearchService } from '../shared/movie-search.service';
     //     transition('void <=> *', animate(2000)),
     //   ]),
     // ]
+    trigger('listAnimation', [
+      transition('* <=> *', [
+        query(
+          ':enter',
+          [
+            style({ opacity: 0, transform: 'translateY(-50px)' }),
+            stagger(
+              '400ms',
+              animate(
+                '400ms ease-in',
+                style({ opacity: 1, transform: 'translateY(0px)' }),
+              ),
+            ),
+          ],
+          { optional: true },
+        ),
+        query(
+          ':leave',
+          [animate('400ms', style({ opacity: 0, transform: 'rotate(90deg)' }))],
+          {
+            optional: true,
+          },
+        ),
+      ]),
+    ]),
 
     trigger('fadeInOut', [
       state('void', style({
@@ -100,10 +125,8 @@ export class MoviesComponent implements OnInit {
 
   searchMoviesNowPlaying() {
     this.searching = true;
-    this.foundMovieResults = []
+    this.foundMovieResults = [];
     this.foundMovieResultsImages = [];
-    // this.foundMoviesUpcoming = [];
-    // this.foundMoviesMostPopular = [];
     // this.foundMoviesSearch = [];
     return this.movieSearchService.getMoviesNowPlaying().subscribe(
       // data => this.handleMoviesNowPlaying(data),
@@ -115,10 +138,8 @@ export class MoviesComponent implements OnInit {
 
   searchMoviesUpcoming() {
     this.searching = true;
-    this.foundMovieResults = []
+    this.foundMovieResults = [];
     this.foundMovieResultsImages = [];
-    // this.foundMoviesNowPlaying = [];
-    // this.foundMoviesMostPopular = [];
     // this.foundMoviesSearch = [];
     return this.movieSearchService.getMoviesUpcoming().subscribe(
       // data => this.handleMoviesUpcoming(data),
@@ -130,10 +151,8 @@ export class MoviesComponent implements OnInit {
 
   searchMoviesMostPopular() {
     this.searching = true;
-    this.foundMovieResults = []
+    this.foundMovieResults = [];
     this.foundMovieResultsImages = [];
-    // this.foundMoviesUpcoming = [];
-    // this.foundMoviesNowPlaying = [];
     return this.movieSearchService.getMoviesMostPopular().subscribe(
       // data => this.handleMoviesMostPopular(data),
       data => this.handleAllMovieResults(data),
@@ -144,11 +163,8 @@ export class MoviesComponent implements OnInit {
 
   searchMovies() {
     this.searching = true;
-    this.foundMovieResults = []
+    this.foundMovieResults = [];
     this.foundMovieResultsImages = [];
-    // this.foundMoviesUpcoming = [];
-    // this.foundMoviesNowPlaying = [];
-    // this.foundMoviesMostPopular = [];
     const searchMovieQuery = this.searchMovieForm.value.searchQuery;
     return this.movieSearchService.getMovieSearch(searchMovieQuery).subscribe(
       // data => this.handleMovieSearch(data),
@@ -157,7 +173,6 @@ export class MoviesComponent implements OnInit {
       () => this.searching = false
     );
   }
-
 
 
   handleAllMovieResults(data) {
@@ -176,60 +191,6 @@ export class MoviesComponent implements OnInit {
     }
     console.log(this.foundMovieResults);
   }
-
-  // handleMoviesNowPlaying(data) {
-  //   this.foundMoviesNowPlaying = data.results;
-
-  //   for (let i = 0; i < this.foundMoviesNowPlaying.length; i++) {
-  //     if (this.foundMoviesNowPlaying[i].poster_path !== null) {
-  //       this.foundMoviesNowPlayingImages.push('https://image.tmdb.org/t/p/w185' + this.foundMoviesNowPlaying[i].poster_path);
-  //     }
-  //     else if (this.foundMoviesNowPlaying[i].backdrop_path !== null) {
-  //       this.foundMoviesNowPlayingImages.push('https://image.tmdb.org/t/p/w300' + this.foundMoviesNowPlaying[i].backdrop_path);
-  //     }
-  //     else {
-  //       this.foundMoviesNowPlayingImages.push('noImage');
-  //     }
-  //   }
-  //   console.log(this.foundMoviesNowPlaying);
-  // }
-
-  // handleMoviesUpcoming(data) {
-  //   this.foundMoviesUpcoming = data.results;
-
-  //   for (let i = 0; i < this.foundMoviesUpcoming.length; i++) {
-  //     if (this.foundMoviesUpcoming[i].poster_path != null) {
-  //       this.foundMoviesUpcomingImages.push('https://image.tmdb.org/t/p/w185' + this.foundMoviesUpcoming[i].poster_path);
-  //     }
-  //     else if (this.foundMoviesUpcoming[i].backdrop_path != null) {
-  //       this.foundMoviesUpcomingImages.push('https://image.tmdb.org/t/p/w300' + this.foundMoviesUpcoming[i].backdrop_path);
-  //     }
-  //     else {
-  //       this.foundMoviesUpcomingImages.push('noImage');
-  //     }
-  //   }
-
-  //   // console.log(this.foundMoviesUpcomingImages);
-  //   console.log(this.foundMoviesUpcoming);
-  // }
-
-  // handleMoviesMostPopular(data) {
-  //   this.foundMoviesMostPopular = data.results;
-
-  //   for (let i = 0; i < this.foundMoviesMostPopular.length; i++) {
-  //     if (this.foundMoviesMostPopular[i].poster_path != null) {
-  //       this.foundMoviesMostPopularImages.push('https://image.tmdb.org/t/p/w185' + this.foundMoviesMostPopular[i].poster_path);
-  //     }
-  //     else if (this.foundMoviesMostPopular[i].backdrop_path != null) {
-  //       this.foundMoviesMostPopularImages.push('https://image.tmdb.org/t/p/w300' + this.foundMoviesMostPopular[i].backdrop_path);
-  //     }
-  //     else {
-  //       this.foundMoviesMostPopularImages.push('noImage');
-  //     }
-  //   }
-
-  //   console.log(this.foundMoviesMostPopular);
-  // }
 
   handleMovieSearch(data) {
     this.foundMoviesSearch = data.results;
@@ -253,6 +214,7 @@ export class MoviesComponent implements OnInit {
   handleError(error) {
     console.log(error);
   }
+
 }
 
 @Component({
