@@ -2,11 +2,12 @@
   Movies {{ selected }}
 </mat-toolbar> -->
 
-<div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="end center" style="padding-top: 20px;">
+<div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="center center" style="padding-top: 20px;">
   <!-- <div fxLayout="row" fxLayoutGap.gt-xs="15px" fxLayoutAlign.gt-sm="end center" fxLayoutAlign="center center" style="padding-top: 8px;"> -->
+  <mat-card>
 
-  <div fxLayoutAlign="center center">
-    <mat-card>
+    <div fxLayoutAlign="center center" fxLayoutGap="30px">
+      <!-- <mat-card> -->
 
       <form [formGroup]="searchMovieForm" (ngSubmit)="searchMovies()">
 
@@ -18,11 +19,11 @@
 
       </form>
 
-    </mat-card>
-  </div>
+      <!-- </mat-card> -->
+      <!-- </div> -->
 
-  <div fxLayoutAlign="center center">
-    <mat-card>
+      <!-- <div fxLayoutAlign="center center"> -->
+      <!-- <mat-card> -->
 
       <mat-form-field>
 
@@ -61,8 +62,10 @@
 
       </mat-form-field> -->
 
-    </mat-card>
-  </div>
+      <!-- </mat-card> -->
+    </div>
+
+  </mat-card>
 
 </div>
 
@@ -76,7 +79,7 @@
 
 <div *ngIf="foundMovieResults" fxLayout="row wrap" fxLayoutAlign="center center" style="padding: 12px 12px;">
 
-  <div *ngFor="let foundMovieResult of foundMovieResults; let i = index" style="padding: 8px 8px">
+  <div *ngFor="let foundMovieResult of foundMovieResults; let i = index" [@fadeInOut] style="padding: 8px 8px">
     <mat-card style="width: 300px;" fxLayout="column" fxLayoutAlign="center center">
       <mat-card-header>
         <mat-card-title style="text-align: center;">
