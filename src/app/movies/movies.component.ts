@@ -223,7 +223,6 @@ export class MoviesComponent implements OnInit {
 
 @Component({
   selector: 'app-movie-poster',
-  // template: `<img src="{{ passedData.foundMoviesNowPlayingImages }}">`
   templateUrl: './movie-poster.component.html'
 })
 export class MoviePosterComponent {
