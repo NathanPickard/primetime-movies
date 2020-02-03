@@ -112,43 +112,6 @@
 
 </div>
 
-<!-- <div *ngIf="foundMoviesNowPlaying" fxLayout="row wrap" fxLayoutAlign="center center" style="padding: 12px 12px;">
-
-  <div *ngFor="let foundMovieNowPlaying of foundMoviesNowPlaying; let i = index" style="padding: 8px 8px">
-
-    <mat-card style="width: 300px;" fxLayout="column" fxLayoutAlign="center center">
-      <mat-card-header>
-        <mat-card-title style="text-align: center;">
-          {{ foundMovieNowPlaying.original_title }}
-        </mat-card-title>
-      </mat-card-header>
-
-      <mat-card-content>
-
-        <a *ngIf="foundMoviesNowPlaying[i]" (click)="openPosterDialog()" fxLayoutAlign="center center">
-          <img src="{{ foundMoviesNowPlayingImages[i] }}">
-        </a>
-
-        <mat-icon *ngIf="foundMoviesNowPlayingImages[i] == null">theaters</mat-icon>
-
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Details
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-          <h3>Overview:</h3>
-          {{ foundMovieNowPlaying.overview }}
-          <h3>Rating: {{ foundMovieNowPlaying.vote_average }}</h3>
-        </mat-expansion-panel>
-      </mat-card-content>
-
-    </mat-card>
-
-  </div>
-
-</div> -->
-
 
 <h2 *ngIf="foundSearchResults" fxLayoutAlign="center center">Search results for
   "{{ searchMovieForm.get('searchQuery').value }}"</h2>
