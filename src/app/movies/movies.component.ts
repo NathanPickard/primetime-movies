@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, HostBinding, Host } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { trigger, transition, animate, style, query, stagger, state } from '@angular/animations';
 
 // import { MoviePosterComponent } from './movie-poster.component';
