@@ -11,30 +11,7 @@ import { listAnimation } from '../animations';
   selector: 'app-movies',
   templateUrl: './movies.component.html',
   styleUrls: ['./movies.component.scss'],
-  animations: [
-    //   trigger('fadeInOut', [
-    //     state('void', style({
-    //       opacity: 0
-    //     })),
-    //     transition('void <=> *', animate(2000)),
-    //   ]),
-    // ]
-
-    listAnimation,
-
-    // trigger('fadeInOut', [
-    //   state('void', style({
-    //     opacity: 0, transform:
-    //       'translateY(-40px)'
-    //   })),
-    //   transition('void <=> *', animate('200ms cubic-bezier(0.3, 0.5, 0, 0.1)', style({
-    //     opacity: 1,
-    //     transform: 'none'
-    //   }))
-    //   )
-    // ])
-
-  ]
+  animations: [listAnimation]
 })
 export class MoviesComponent implements OnInit {
 
