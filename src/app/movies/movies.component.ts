@@ -84,7 +84,6 @@ export class MoviesComponent implements OnInit {
     this.foundMovieResultsImages = [];
     // this.foundMoviesSearch = [];
     return this.movieSearchService.getMoviesNowPlaying().subscribe(
-      // data => this.handleMoviesNowPlaying(data),
       data => this.handleAllMovieResults(data),
       error => this.handleError(error),
       () => this.searching = false
@@ -97,7 +96,6 @@ export class MoviesComponent implements OnInit {
     this.foundMovieResultsImages = [];
     // this.foundMoviesSearch = [];
     return this.movieSearchService.getMoviesUpcoming().subscribe(
-      // data => this.handleMoviesUpcoming(data),
       data => this.handleAllMovieResults(data),
       error => this.handleError(error),
       () => this.searching = false
@@ -109,7 +107,6 @@ export class MoviesComponent implements OnInit {
     this.foundMovieResults = [];
     this.foundMovieResultsImages = [];
     return this.movieSearchService.getMoviesMostPopular().subscribe(
-      // data => this.handleMoviesMostPopular(data),
       data => this.handleAllMovieResults(data),
       error => this.handleError(error),
       () => this.searching = false
@@ -122,7 +119,6 @@ export class MoviesComponent implements OnInit {
     this.foundMovieResultsImages = [];
     const searchMovieQuery = this.searchMovieForm.value.searchQuery;
     return this.movieSearchService.getMovieSearch(searchMovieQuery).subscribe(
-      // data => this.handleMovieSearch(data),
       data => this.handleAllMovieResults(data),
       error => this.handleError(error),
       () => this.searching = false
@@ -169,7 +165,6 @@ export class MoviesComponent implements OnInit {
   handleError(error) {
     console.log(error);
   }
-
 }
 
 @Component({
