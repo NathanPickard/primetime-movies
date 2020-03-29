@@ -67,6 +67,7 @@ export class MoviesComponent implements OnInit {
     const dialogRef = this.dialog.open(MoviePosterComponent, {
       width: '250px',
       data: {
+        // largePoster: this.foundMoviesNowPlayingImages,
         largePoster: this.foundMoviesNowPlayingImages,
         movieNowPlayingInfo: this.foundMoviesNowPlaying
       }
