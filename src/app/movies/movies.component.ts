@@ -37,7 +37,7 @@ export class MoviesComponent implements OnInit {
   foundSearchResults = false;
 
   constructor(private movieSearchService: MovieSearchService,
-    private dialog: MatDialog) { }
+    public dialog: MatDialog) { }
 
   selected = 'Now Playing';
 
@@ -64,12 +64,15 @@ export class MoviesComponent implements OnInit {
   }
 
   openPosterDialog() {
+    // console.log(MoviePosterComponent.data);
+    console.log(this.foundMovieResults);
     const dialogRef = this.dialog.open(MoviePosterComponent, {
-      width: '250px',
+      width: '450px',
       data: {
         // largePoster: this.foundMoviesNowPlayingImages,
         largePoster: this.foundMoviesNowPlayingImages,
-        movieNowPlayingInfo: this.foundMoviesNowPlaying
+        // movieNowPlayingInfo: this.foundMoviesNowPlaying
+        movieNowPlayingInfo: this.foundMovieResults
       }
     });
   }
