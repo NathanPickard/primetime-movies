@@ -1,28 +1,26 @@
-<h1 mat-dialog-title>Movie Poster</h1>
+<h1 mat-dialog-title fxLayoutAlign="center center">{{ data.movieData.original_title }}</h1>
 
-<!-- <div *ngIf="data.largePoster" mat-dialog-content>
-  <div mat-dialog-content>
-    {{ data.movieNowPlayingInfo.original_title }}
-    <img src={{data.largePoster}}>
-    <img src="{{ data.largePoster[i] }}">
-    {{ data.largePoster[i] }}
-  </div> -->
+<mat-dialog-content>
 
-  <h2>Hi there</h2>
-  <h2>{{ data.movieNowPlayingInfo }}</h2>
+  <div fxLayoutAlign="center center">
+    <img src="{{ data.posterImgSrc }}">
+  </div>
 
-<div mat-dialog-actions>
-  <button mat-button color="primary" (click)="onDialogClose()">
+  <h4 fxLayoutAlign="center center">Release date: {{ data.movieData.release_date | date:'mediumDate' }}</h4>
+
+  <mat-divider></mat-divider>
+
+  <h4>Overview:</h4>
+  <p>{{ data.movieData.overview }}</p>
+
+  <mat-divider></mat-divider>
+
+  <h4>Rating: {{ data.movieData.vote_average }}</h4>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+  <button mat-stroked-button color="primary" (click)="onDialogClose()">
     Close
   </button>
-</div>
-
-<!-- <div *ngFor=""> -->
-  <img src="{{ data.largePoster }}">
-  <img>
-<!-- </div> -->
-
-<!-- <div *ngFor="let poster of data.largePoster">
-    <p>{{ dialogPoster }}</p>
-  </div> -->
-<!-- </div> -->
+</mat-dialog-actions>

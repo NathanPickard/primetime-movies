@@ -63,16 +63,15 @@ export class MoviesComponent implements OnInit {
     });
   }
 
-  openPosterDialog() {
+  openPosterDialog(openPoster) {
     // console.log(MoviePosterComponent.data);
-    console.log(this.foundMovieResults);
+    console.log(openPoster);
     const dialogRef = this.dialog.open(MoviePosterComponent, {
       width: '450px',
       data: {
-        // largePoster: this.foundMoviesNowPlayingImages,
-        largePoster: this.foundMoviesNowPlayingImages,
-        // movieNowPlayingInfo: this.foundMoviesNowPlaying
-        movieNowPlayingInfo: this.foundMovieResults
+        movieData: openPoster,
+        movieNowPlayingInfo: this.foundMovieResults,
+        posterImgSrc: "https://image.tmdb.org/t/p/w300" + openPoster.poster_path
       }
     });
   }

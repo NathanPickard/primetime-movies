@@ -83,7 +83,7 @@
 
       <mat-card-content>
 
-        <a *ngIf="foundMovieResults[i]" (click)="openPosterDialog()" fxLayoutAlign="center center">
+        <a *ngIf="foundMovieResults[i]" (click)="openPosterDialog(foundMovieResult)" fxLayoutAlign="center center">
           <img src="{{ foundMovieResultsImages[i] }}">
         </a>
 
