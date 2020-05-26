@@ -83,15 +83,23 @@
 
       <mat-card-content>
 
-        <a *ngIf="foundMovieResults[i]" (click)="openPosterDialog(foundMovieResult)" fxLayoutAlign="center center">
+        <!-- <a *ngIf="foundMovieResults[i]" (click)="openPosterDialog(foundMovieResult)" fxLayoutAlign="center center" -->
+        <a *ngIf="foundMovieResultsImages[i] !== 'noImage'" (click)="openPosterDialog(foundMovieResult)"
+          fxLayoutAlign="center center" style="cursor: pointer;">
           <img src="{{ foundMovieResultsImages[i] }}">
         </a>
 
-        <div *ngIf="foundMoviesUpcomingImages[i] == 'noImage'" fxLayout="column" fxLayoutAlign="center center"
+        <!-- <div *ngIf="foundMoviesUpcomingImages[i] == 'noImage'" fxLayout="column" fxLayoutAlign="center center"
           style="padding: 25px 0px;">
           <mat-icon>theaters</mat-icon>
           (Image not available)
-        </div>
+        </div> -->
+
+        <a *ngIf="foundMovieResultsImages[i] == 'noImage'" (click)="openPosterDialog(foundMovieResult)"
+          fxLayout="column" fxLayoutAlign="center center" style="padding: 25px 0px; cursor: pointer;">
+          <mat-icon>theaters</mat-icon>
+          (Image not available)
+        </a>
 
         <mat-expansion-panel>
           <mat-expansion-panel-header>

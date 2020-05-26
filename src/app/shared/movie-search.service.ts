@@ -39,4 +39,8 @@ export class MovieSearchService {
       + '&language=en-US&page=1&region=US&query=' + query + '&page=1&include_adult=false');
   }
 
+  getMovieDetails(movie) {
+    return this.httpClient.get(this.TMDB_API_URL)
+  }
+
 }

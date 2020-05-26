@@ -70,8 +70,9 @@ export class MoviesComponent implements OnInit {
       width: '450px',
       data: {
         movieData: openPoster,
-        movieNowPlayingInfo: this.foundMovieResults,
+        // movieNowPlayingInfo: this.foundMovieResults,
         posterImgSrc: "https://image.tmdb.org/t/p/w300" + openPoster.poster_path
+
       }
     });
   }
