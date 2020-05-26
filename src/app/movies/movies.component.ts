@@ -16,6 +16,7 @@ import { listAnimation } from '../animations';
 export class MoviesComponent implements OnInit {
 
   foundMovieResults: any[];
+  foundMovieDetailsResults: any[];
 
   foundMoviesNowPlaying: any[];
   foundMoviesUpcoming: any[];
@@ -55,6 +56,7 @@ export class MoviesComponent implements OnInit {
     this.foundMoviesSearchImages = [];
 
     this.foundMovieResultsImages = [];
+    this.foundMovieDetailsResults = [];
 
     this.searchMoviesNowPlaying();
 
@@ -64,15 +66,18 @@ export class MoviesComponent implements OnInit {
   }
 
   openPosterDialog(openPoster) {
-    // console.log(MoviePosterComponent.data);
-    console.log(openPoster);
+    console.log(openPoster.id);
+    this.searchMovieDetails(openPoster.id);
+
+    console.log(this.foundMovieDetailsResults);
+    console.log(this.foundMovieResults);
+
     const dialogRef = this.dialog.open(MoviePosterComponent, {
       width: '450px',
       data: {
         movieData: openPoster,
-        // movieNowPlayingInfo: this.foundMovieResults,
-        posterImgSrc: "https://image.tmdb.org/t/p/w300" + openPoster.poster_path
-
+        movieDetailsInfo: this.foundMovieDetailsResults,
+        posterImgSrc: 'https://image.tmdb.org/t/p/w300' + openPoster.poster_path
       }
     });
   }
@@ -80,6 +85,14 @@ export class MoviesComponent implements OnInit {
   onMovieTypeChange(movieType) {
     let selectedMovieType = movieType.value;
     console.log(selectedMovieType);
+  }
+
+  searchMovieDetails(movieId) {
+    this.foundMovieDetailsResults = [];
+    return this.movieSearchService.getMovieDetails(movieId).subscribe(
+      data => this.handleMovieDetailsResults(data),
+      error => this.handleError(error)
+    );
   }
 
   searchMoviesNowPlaying() {
@@ -127,6 +140,11 @@ export class MoviesComponent implements OnInit {
       error => this.handleError(error),
       () => this.searching = false
     );
+  }
+
+  handleMovieDetailsResults(data) {
+    this.foundMovieDetailsResults = data;
+    console.log(this.foundMovieDetailsResults);
   }
 
 
