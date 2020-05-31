@@ -9,7 +9,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './shared/material.module';
 
-import { AppComponent } from './app.component';
+import { AppComponent, AboutComponent } from './app.component';
 import { MoviesComponent } from './movies/movies.component';
 import { MoviePosterComponent } from './movies/movies.component';
 import { MovieDetailsComponent } from './movies/movie-details/movie-details.component';
@@ -19,6 +19,7 @@ import { environment } from '../environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
+    AboutComponent,
     MoviesComponent,
     MoviePosterComponent,
     MovieDetailsComponent
@@ -36,6 +37,6 @@ import { environment } from '../environments/environment';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [MoviePosterComponent]
+  entryComponents: [MoviePosterComponent, AboutComponent]
 })
 export class AppModule { }

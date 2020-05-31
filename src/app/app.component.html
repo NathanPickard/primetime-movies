@@ -1,15 +1,19 @@
 <mat-toolbar color="primary" fxLayoutAlign="center center">
 
-  <a mat-raised-button routerLink="/movies" style="text-decoration: none;">
-    <mat-icon>movie_filter</mat-icon>
-    Primetime Movies
-  </a>
+  <mat-toolbar-row>
 
-  <span fxFlex></span>
+    <a mat-raised-button routerLink="/movies" style="text-decoration: none;">
+      <mat-icon>movie_filter</mat-icon>
+      Primetime Movies
+    </a>
 
-  <a style="cursor: pointer;">
-    <p>About</p>
-  </a>
+    <span fxShow fxHide.lt-sm class="spacer"></span>
+
+    <a style="cursor: pointer;" (click)="openAboutDialog()">
+      <p>About</p>
+    </a>
+
+  </mat-toolbar-row>
 
 </mat-toolbar>
 
