@@ -99,7 +99,6 @@ export class MoviesComponent implements OnInit {
     this.searching = true;
     this.foundMovieResults = [];
     this.foundMovieResultsImages = [];
-    // this.foundMoviesSearch = [];
     return this.movieSearchService.getMoviesNowPlaying().subscribe(
       data => this.handleAllMovieResults(data),
       error => this.handleError(error),
