@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { trigger, transition, animate, style, query, stagger, state } from '@angular/animations';
 
+import { map, mergeMap } from 'rxjs/operators';
+
 // import { MoviePosterComponent } from './movie-poster.component';
 import { MovieSearchService } from '../shared/movie-search.service';
 import { listAnimation } from '../animations';
@@ -17,6 +19,7 @@ export class MoviesComponent implements OnInit {
 
   foundMovieResults: any[];
   foundMovieDetailsResults: any[];
+  foundMovieFullDetails: any;
 
   foundMoviesNowPlaying: any[];
   foundMoviesUpcoming: any[];
@@ -54,6 +57,7 @@ export class MoviesComponent implements OnInit {
     this.foundMoviesUpcomingImages = [];
     this.foundMoviesMostPopularImages = [];
     this.foundMoviesSearchImages = [];
+    // this.foundMovieFullDetails;
 
     this.foundMovieResultsImages = [];
     this.foundMovieDetailsResults = [];
@@ -105,6 +109,24 @@ export class MoviesComponent implements OnInit {
       () => this.searching = false
     );
   }
+
+  // searchMoviesNowPlaying() {
+  //   this.searching = true;
+  //   this.foundMovieResults = [];
+  //   this.foundMovieResultsImages = [];
+  //   return this.movieSearchService.getMoviesNowPlaying().pipe(
+  //     map(movies => {
+  //       const movie = movies.results[0];
+  //       // console.log(movies.results[0]);
+  //       console.log(movie);
+  //       return movie;
+  //     }),
+  //     mergeMap(movie => this.movieSearchService.getMovieDetails(movie.id))
+  //   ).subscribe(moviedata => {
+  //     this.foundMovieFullDetails = moviedata;
+  //     console.log(this.foundMovieFullDetails);
+  //   });
+  // }
 
   searchMoviesUpcoming() {
     this.searching = true;
