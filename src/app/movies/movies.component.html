@@ -56,7 +56,7 @@
     </div>
 
     <div fxLayout="column" fxLayoutAlign="center center">
-    <!-- <div> -->
+      <!-- <div> -->
       <h5 style="margin-top: 0px; margin-bottom: 8px;">Results powered by:</h5>
       <a href="https://www.themoviedb.org/" style="text-align: center">
         <img
@@ -82,9 +82,10 @@
   <div *ngFor="let foundMovieResult of foundMovieResults; let i = index" [@listAnimation] style="padding: 8px 8px">
     <mat-card style="width: 300px;" fxLayout="column" fxLayoutAlign="center center">
       <mat-card-header>
-        <mat-card-title style="text-align: center;">
+        <!-- <mat-card-title style="text-align: center;" (click)="openPosterDialog(foundMovieResult)"
+          style="cursor: pointer;">
           {{ foundMovieResult.original_title }}
-        </mat-card-title>
+        </mat-card-title> -->
       </mat-card-header>
 
       <mat-card-content>
@@ -100,6 +101,11 @@
           <mat-icon>theaters</mat-icon>
           (Image not available)
         </a>
+
+        <h3 fxLayoutAlign="center center" (click)="openPosterDialog(foundMovieResult)"
+          style="margin-top: 8px; cursor: pointer;">
+          {{ foundMovieResult.original_title }}
+        </h3>
 
         <mat-expansion-panel>
           <mat-expansion-panel-header>
