@@ -77,9 +77,23 @@
   <mat-spinner color="accent"></mat-spinner>
 </div>
 
+<!-- <div *ngIf="foundMovieResults" fxLayout="row wrap" fxLayoutAlign="center center" style="padding: 12px 12px;">
+
+  <div *ngFor="let foundMovieFullDetail of foundMovieFullDetails; let i = index" [@listAnimation]
+    style="padding: 8px 8px">
+    <mat-card style="width: 300px;" fxLayout="column" fxLayoutAlign="center center">
+
+
+      <h2 *ngIf="foundMovieFullDetail.tagline">Tagline: {{ foundMovieFullDetail.tagline }}</h2>
+
+    </mat-card>
+  </div>
+</div> -->
+
 <div *ngIf="foundMovieResults" fxLayout="row wrap" fxLayoutAlign="center center" style="padding: 12px 12px;">
 
-  <div *ngFor="let foundMovieResult of foundMovieResults; let i = index" [@listAnimation] style="padding: 8px 8px">
+  <!-- <div *ngFor="let foundMovieResult of foundMovieResults; let i = index" [@listAnimation] style="padding: 8px 8px"> -->
+  <div *ngFor="let foundMovieFullDetail of foundMovieFullDetails; let i = index" [@listAnimation] style="padding: 8px 8px">
     <mat-card style="width: 300px;" fxLayout="column" fxLayoutAlign="center center">
       <mat-card-header>
         <!-- <mat-card-title style="text-align: center;" (click)="openPosterDialog(foundMovieResult)"
@@ -91,20 +105,20 @@
       <mat-card-content>
 
         <!-- <a *ngIf="foundMovieResults[i]" (click)="openPosterDialog(foundMovieResult)" fxLayoutAlign="center center" -->
-        <a *ngIf="foundMovieResultsImages[i] !== 'noImage'" (click)="openPosterDialog(foundMovieResult)"
+        <a *ngIf="foundMovieResultsImages[i] !== 'noImage'" (click)="openPosterDialog(foundMovieFullDetail)"
           fxLayoutAlign="center center" style="cursor: pointer;">
           <img src="{{ foundMovieResultsImages[i] }}">
         </a>
 
-        <a *ngIf="foundMovieResultsImages[i] == 'noImage'" (click)="openPosterDialog(foundMovieResult)"
+        <a *ngIf="foundMovieResultsImages[i] == 'noImage'" (click)="openPosterDialog(foundMovieFullDetail)"
           fxLayout="column" fxLayoutAlign="center center" style="padding: 25px 0px; cursor: pointer;">
           <mat-icon>theaters</mat-icon>
           (Image not available)
         </a>
 
-        <h3 fxLayoutAlign="center center" (click)="openPosterDialog(foundMovieResult)"
+        <h3 fxLayoutAlign="center center" (click)="openPosterDialog(foundMovieFullDetail)"
           style="margin-top: 8px; cursor: pointer;">
-          {{ foundMovieResult.original_title }}
+          {{ foundMovieFullDetail.original_title }}
         </h3>
 
         <mat-expansion-panel>
@@ -114,8 +128,8 @@
             </mat-panel-title>
           </mat-expansion-panel-header>
           <h3>Overview:</h3>
-          {{ foundMovieResult.overview }}
-          <h3>Rating: {{ foundMovieResult.vote_average }}</h3>
+          {{ foundMovieFullDetail.overview }}
+          <h3>Rating: {{ foundMovieFullDetail.vote_average }}</h3>
         </mat-expansion-panel>
       </mat-card-content>
 

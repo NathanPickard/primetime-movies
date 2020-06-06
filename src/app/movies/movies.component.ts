@@ -19,7 +19,8 @@ export class MoviesComponent implements OnInit {
 
   foundMovieResults: any[];
   foundMovieDetailsResults: any[];
-  foundMovieFullDetails: any;
+  foundMovieFullDetails: any[];
+  awesomeResults: any;
 
   foundMoviesNowPlaying: any[];
   foundMoviesUpcoming: any[];
@@ -57,7 +58,8 @@ export class MoviesComponent implements OnInit {
     this.foundMoviesUpcomingImages = [];
     this.foundMoviesMostPopularImages = [];
     this.foundMoviesSearchImages = [];
-    // this.foundMovieFullDetails;
+    this.foundMovieFullDetails = [];
+
 
     this.foundMovieResultsImages = [];
     this.foundMovieDetailsResults = [];
@@ -128,6 +130,17 @@ export class MoviesComponent implements OnInit {
   //   });
   // }
 
+  // searchMoviesNowPlaying() {
+  //   this.searching = true;
+  //   this.foundMovieResults = [];
+  //   this.foundMovieResultsImages = [];
+  //   this.movieSearchService.getMoviesNowPlaying().pipe(
+  //     mergeMap((movie) => {
+  //       return this.movieSearchService.getMovieDetails(movie.id)
+  //     })
+  //   ).subscribe(fullMovieData => console.log(fullMovieData));
+  // }
+
   searchMoviesUpcoming() {
     this.searching = true;
     this.foundMovieResults = [];
@@ -172,7 +185,17 @@ export class MoviesComponent implements OnInit {
   handleAllMovieResults(data) {
     this.foundMovieResults = data.results;
 
+    // this.movieSearchService.getMovieDetails().pipe(
+    //   mergeMap((movie) => {
+    //     return this.movieSearchService.getMovieDetails(movie.id)
+    //   })
+    // ).subscribe(fullMovieData => console.log(fullMovieData));
+
     for (let i = 0; i < this.foundMovieResults.length; i++) {
+
+      this.movieSearchService.getMovieDetails(this.foundMovieResults[i].id).subscribe(
+        fullDetailsData => this.foundMovieFullDetails.push(fullDetailsData));
+
       if (this.foundMovieResults[i].poster_path !== null) {
         this.foundMovieResultsImages.push('https://image.tmdb.org/t/p/w185' + this.foundMovieResults[i].poster_path);
       }
@@ -183,7 +206,9 @@ export class MoviesComponent implements OnInit {
         this.foundMovieResultsImages.push('noImage');
       }
     }
+    console.log(this.foundMovieFullDetails);
     console.log(this.foundMovieResults);
+    console.log(this.foundMovieResultsImages);
   }
 
   handleMovieSearch(data) {
