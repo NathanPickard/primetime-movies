@@ -104,6 +104,7 @@ export class MoviesComponent implements OnInit {
   searchMoviesNowPlaying() {
     this.searching = true;
     this.foundMovieResults = [];
+    this.foundMovieFullDetails = [];
     this.foundMovieResultsImages = [];
     return this.movieSearchService.getMoviesNowPlaying().subscribe(
       data => this.handleAllMovieResults(data),
@@ -144,6 +145,7 @@ export class MoviesComponent implements OnInit {
   searchMoviesUpcoming() {
     this.searching = true;
     this.foundMovieResults = [];
+    this.foundMovieFullDetails = [];
     this.foundMovieResultsImages = [];
     // this.foundMoviesSearch = [];
     return this.movieSearchService.getMoviesUpcoming().subscribe(
@@ -156,6 +158,7 @@ export class MoviesComponent implements OnInit {
   searchMoviesMostPopular() {
     this.searching = true;
     this.foundMovieResults = [];
+    this.foundMovieFullDetails = [];
     this.foundMovieResultsImages = [];
     return this.movieSearchService.getMoviesMostPopular().subscribe(
       data => this.handleAllMovieResults(data),
@@ -167,6 +170,7 @@ export class MoviesComponent implements OnInit {
   searchMovies() {
     this.searching = true;
     this.foundMovieResults = [];
+    this.foundMovieFullDetails = [];
     this.foundMovieResultsImages = [];
     const searchMovieQuery = this.searchMovieForm.value.searchQuery;
     return this.movieSearchService.getMovieSearch(searchMovieQuery).subscribe(

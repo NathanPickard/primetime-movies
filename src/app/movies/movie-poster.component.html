@@ -8,6 +8,8 @@
     <img src="{{ data.posterImgSrc }}">
   </div>
 
+  <p fxLayoutAlign="center center" style="font-style: italic;">{{ data.movieData.tagline }}</p>
+
   <h4 fxLayoutAlign="center center">Release date: {{ data.movieData.release_date | date:'mediumDate' }}</h4>
 
   <mat-divider></mat-divider>
