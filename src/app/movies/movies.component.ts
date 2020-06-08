@@ -18,6 +18,7 @@ import { listAnimation } from '../animations';
 export class MoviesComponent implements OnInit {
 
   foundMovieResults: any[];
+  foundMovieResultsData: any[];
   foundMovieDetailsResults: any[];
   foundMovieFullDetails: any[];
   awesomeResults: any;
@@ -58,7 +59,7 @@ export class MoviesComponent implements OnInit {
     this.foundMoviesUpcomingImages = [];
     this.foundMoviesMostPopularImages = [];
     this.foundMoviesSearchImages = [];
-    this.foundMovieFullDetails = [];
+    // this.foundMovieFullDetails = [];
 
 
     this.foundMovieResultsImages = [];
@@ -82,7 +83,8 @@ export class MoviesComponent implements OnInit {
       width: '450px',
       data: {
         movieData: openPoster,
-        movieDetailsInfo: this.foundMovieDetailsResults,
+        // movieDetailsInfo: this.foundMovieDetailsResults,
+        movieDetailsInfo: this.foundMovieResultsData,
         posterImgSrc: 'https://image.tmdb.org/t/p/w300' + openPoster.poster_path
       }
     });
@@ -145,6 +147,7 @@ export class MoviesComponent implements OnInit {
   searchMoviesUpcoming() {
     this.searching = true;
     this.foundMovieResults = [];
+    this.foundMovieResultsData = [];
     this.foundMovieFullDetails = [];
     this.foundMovieResultsImages = [];
     // this.foundMoviesSearch = [];
@@ -158,6 +161,7 @@ export class MoviesComponent implements OnInit {
   searchMoviesMostPopular() {
     this.searching = true;
     this.foundMovieResults = [];
+    this.foundMovieResultsData = [];
     this.foundMovieFullDetails = [];
     this.foundMovieResultsImages = [];
     return this.movieSearchService.getMoviesMostPopular().subscribe(
@@ -170,6 +174,7 @@ export class MoviesComponent implements OnInit {
   searchMovies() {
     this.searching = true;
     this.foundMovieResults = [];
+    this.foundMovieResultsData = [];
     this.foundMovieFullDetails = [];
     this.foundMovieResultsImages = [];
     const searchMovieQuery = this.searchMovieForm.value.searchQuery;
@@ -187,7 +192,8 @@ export class MoviesComponent implements OnInit {
 
 
   handleAllMovieResults(data) {
-    this.foundMovieResults = data.results;
+    // this.foundMovieResults = data.results;
+    this.foundMovieResultsData = data.results;
 
     // this.movieSearchService.getMovieDetails().pipe(
     //   mergeMap((movie) => {
@@ -195,24 +201,31 @@ export class MoviesComponent implements OnInit {
     //   })
     // ).subscribe(fullMovieData => console.log(fullMovieData));
 
-    for (let i = 0; i < this.foundMovieResults.length; i++) {
+    for (let i = 0; i < this.foundMovieResultsData.length; i++) {
 
-      this.movieSearchService.getMovieDetails(this.foundMovieResults[i].id).subscribe(
+      this.movieSearchService.getMovieDetails(this.foundMovieResultsData[i].id).subscribe(
         fullDetailsData => this.foundMovieFullDetails.push(fullDetailsData));
+        
 
-      if (this.foundMovieResults[i].poster_path !== null) {
-        this.foundMovieResultsImages.push('https://image.tmdb.org/t/p/w185' + this.foundMovieResults[i].poster_path);
+      if (this.foundMovieResultsData[i].poster_path !== null) {
+        this.foundMovieResultsImages.push('https://image.tmdb.org/t/p/w185' + this.foundMovieResultsData[i].poster_path);
       }
-      else if (this.foundMovieResults[i].backdrop_path !== null) {
-        this.foundMovieResultsImages.push('https://image.tmdb.org/t/p/w300' + this.foundMovieResults[i].backdrop_path);
+      else if (this.foundMovieResultsData[i].backdrop_path !== null) {
+        this.foundMovieResultsImages.push('https://image.tmdb.org/t/p/w300' + this.foundMovieResultsData[i].backdrop_path);
       }
       else {
         this.foundMovieResultsImages.push('noImage');
       }
     }
-    console.log(this.foundMovieFullDetails);
-    console.log(this.foundMovieResults);
+
+    console.log(Object.keys(this.foundMovieFullDetails));
+    console.log(this.foundMovieResultsData);
     console.log(this.foundMovieResultsImages);
+    this.handleFinalDetails(this.foundMovieFullDetails);
+  }
+
+  handleFinalDetails(movieData) {
+    console.log(movieData);
   }
 
   handleMovieSearch(data) {
