@@ -6,7 +6,8 @@ export const listAnimation = trigger('listAnimation', [
     query(
       ':enter',
       [
-        style({ opacity: 0, transform: 'translateY(-50px)' }),
+        // style({ opacity: 0, transform: 'translateY(-50px)' }),
+        style({ opacity: 0, transform: 'scale(0.7)' }),
         stagger(
           '400ms',
           animate(

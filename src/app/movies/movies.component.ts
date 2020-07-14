@@ -50,7 +50,7 @@ export class MoviesComponent implements OnInit {
     { value: 'Now Playing', viewValue: 'Now Playing' },
     { value: 'Coming Soon', viewValue: 'Coming Soon' },
     { value: 'Most Popular', viewValue: 'Most Popular' }
-  ]
+  ];
 
   ngOnInit() {
 

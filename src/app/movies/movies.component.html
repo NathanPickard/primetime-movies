@@ -96,12 +96,6 @@
   <!-- <div *ngFor="let foundMovieFullDetail of foundMovieFullDetails; let i = index" [@listAnimation] style="padding: 8px 8px"> -->
   <div *ngFor="let foundMovieResults of foundMovieResultsData; let i = index" [@listAnimation] style="padding: 8px 8px">
     <mat-card style="width: 300px;" fxLayout="column" fxLayoutAlign="center center">
-      <mat-card-header>
-        <!-- <mat-card-title style="text-align: center;" (click)="openPosterDialog(foundMovieResult)"
-          style="cursor: pointer;">
-          {{ foundMovieResult.original_title }}
-        </mat-card-title> -->
-      </mat-card-header>
 
       <mat-card-content>
 
@@ -118,11 +112,11 @@
         </a>
 
         <h3 fxLayoutAlign="center center" (click)="openPosterDialog(foundMovieResults)"
-          style="margin-top: 8px; cursor: pointer;">
+          style="margin-top: 8px; cursor: pointer; text-align: center;">
           {{ foundMovieResults.original_title }}
         </h3>
 
-        <mat-expansion-panel>
+        <!-- <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
               Details
@@ -131,13 +125,11 @@
           <h3>Overview:</h3>
           {{ foundMovieResults.overview }}
           <h3>Rating: {{ foundMovieResults.vote_average }}</h3>
-        </mat-expansion-panel>
+        </mat-expansion-panel> -->
       </mat-card-content>
-
     </mat-card>
 
   </div>
-
 </div>
 
 
