@@ -13,7 +13,7 @@ export class AppComponent {
   openAboutDialog() {
     const dialogRef = this.dialog.open(AboutComponent, {
       width: '450px',
-    })
+    });
   }
 }
 

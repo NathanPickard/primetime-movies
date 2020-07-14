@@ -21,7 +21,6 @@ export class MoviesComponent implements OnInit {
   foundMovieResultsData: any[];
   foundMovieDetailsResults: any[];
   foundMovieFullDetails: any[];
-  awesomeResults: any;
 
   foundMoviesNowPlaying: any[];
   foundMoviesUpcoming: any[];
@@ -205,7 +204,6 @@ export class MoviesComponent implements OnInit {
 
       this.movieSearchService.getMovieDetails(this.foundMovieResultsData[i].id).subscribe(
         fullDetailsData => this.foundMovieFullDetails.push(fullDetailsData));
-        
 
       if (this.foundMovieResultsData[i].poster_path !== null) {
         this.foundMovieResultsImages.push('https://image.tmdb.org/t/p/w185' + this.foundMovieResultsData[i].poster_path);
@@ -225,7 +223,7 @@ export class MoviesComponent implements OnInit {
   }
 
   handleFinalDetails(movieData) {
-    console.log(movieData);
+    // console.log(movieData);
   }
 
   handleMovieSearch(data) {
@@ -243,7 +241,6 @@ export class MoviesComponent implements OnInit {
         this.foundMoviesSearchImages.push('noImage');
       }
     }
-
     console.log(this.foundMoviesSearch);
   }
 
