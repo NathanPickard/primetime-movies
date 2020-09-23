@@ -79,7 +79,7 @@ export class MoviesComponent implements OnInit {
     console.log(this.foundMovieResults);
 
     const dialogRef = this.dialog.open(MoviePosterComponent, {
-      width: '450px',
+      width: '475px',
       data: {
         movieData: openPoster,
         // movieDetailsInfo: this.foundMovieDetailsResults,
