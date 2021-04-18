@@ -13,6 +13,7 @@
             <mat-icon>search</mat-icon>
           </button>
         </mat-form-field>
+
       </form>
 
       <mat-form-field>
@@ -63,7 +64,6 @@
           src="https://website-images-nathan.s3-us-west-2.amazonaws.com/blue_long_1-8ba2ac31f354005783fab473602c34c3f4fd207150182061e425d366e4f34596.svg"
           style="width: 55%;">
       </a>
-
     </div>
   </mat-card>
 
@@ -131,13 +131,13 @@
   </div>
 </div>
 
-
 <h2 *ngIf="foundSearchResults" fxLayoutAlign="center center">Search results for
   "{{ searchMovieForm.get('searchQuery').value }}"</h2>
 
 <div *ngIf="foundMoviesSearch" fxLayout="row wrap" fxLayoutAlign="center center" style="padding: 15px 15px;">
 
   <div *ngFor="let foundMovieSearch of foundMoviesSearch; let i = index" style="padding: 8px 8px">
+
     <mat-card style="width: 300px;" fxLayout="column" fxLayoutAlign="center center">
       <mat-card-header>
         <mat-card-title style="text-align: center;">
@@ -164,9 +164,7 @@
           </mat-expansion-panel-header>
           {{ foundMovieSearch.overview }}
         </mat-expansion-panel>
-
       </mat-card-content>
-
     </mat-card>
 
   </div>

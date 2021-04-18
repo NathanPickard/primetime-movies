@@ -189,7 +189,6 @@ export class MoviesComponent implements OnInit {
     console.log(this.foundMovieDetailsResults);
   }
 
-
   handleAllMovieResults(data) {
     // this.foundMovieResults = data.results;
     this.foundMovieResultsData = data.results;
