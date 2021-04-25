@@ -3,9 +3,7 @@
   <mat-card>
 
     <div fxLayoutAlign="center center" fxLayout.lt-sm="column" fxLayoutGap="30px">
-
       <form [formGroup]="searchMovieForm" (ngSubmit)="searchMovies()">
-
         <mat-form-field appearance="outline">
           <mat-label>Search movies</mat-label>
           <input matInput placeholder="Have a movie in mind?" formControlName="searchQuery">
@@ -13,11 +11,9 @@
             <mat-icon>search</mat-icon>
           </button>
         </mat-form-field>
-
       </form>
 
       <mat-form-field>
-
         <!-- <mat-label>Select movie times</mat-label> -->
         <mat-label>Search movies by:</mat-label>
 
@@ -35,9 +31,7 @@
             Most popular
           </mat-option>
         </mat-select>
-
       </mat-form-field>
-
       <!-- <mat-form-field>
 
         <mat-label>Select movie times</mat-label> -->
@@ -52,7 +46,6 @@
         </mat-select>
 
       </mat-form-field> -->
-
       <!-- </mat-card> -->
     </div>
 
@@ -97,7 +90,6 @@
     <mat-card style="width: 300px;" fxLayout="column" fxLayoutAlign="center center">
 
       <mat-card-content>
-
         <!-- <a *ngIf="foundMovieResults[i]" (click)="openPosterDialog(foundMovieResult)" fxLayoutAlign="center center" -->
         <a *ngIf="foundMovieResultsImages[i] !== 'noImage'" (click)="openPosterDialog(foundMovieResults)"
           fxLayoutAlign="center center" style="cursor: pointer;">
